@@ -54,7 +54,6 @@
             '.about-image',
             '.platform-orbit-img',
             '.platform-orbit-frame img',
-            '.platform-arch-diagram',
             '.architecture-diagram img',
             '.arch-diagram img',
             '.login-brand-orbit-img',

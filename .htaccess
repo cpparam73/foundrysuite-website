@@ -26,9 +26,7 @@ RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^index\.html$ / [R=301,L]
 
 # Canonical Foundry Platform product page
-# Foundry Platform page is hidden — redirect legacy URLs to home
-RewriteRule ^platform\.html$ / [R=301,L]
-RewriteRule ^foundry-platform\.html$ / [R=301,L]
+RewriteRule ^foundry-platform\.html$ /platform.html [R=301,L]
 
 # Official Authentication Entry (EPS §14.6.3.1) — no independent website login
 RewriteRule ^login\.html$ https://login.foundrysuite.com [R=301,L]

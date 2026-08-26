@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoundrySuite | Business Transformation Software</title>
+    <title>FoundrySuite | Your business. Your modules. One platform.</title>
     <meta name="robots" content="index, follow">
     <meta name="description" content="Run your business on one platform—add the modules you need, when you need them. Business transformation software designed to simplify operations, unify data, and grow with your business.">
 
@@ -12,21 +12,21 @@
     <meta property="og:site_name" content="FoundrySuite">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://www.foundrysuite.com">
-    <meta property="og:title" content="FoundrySuite | Business Transformation Software">
+    <meta property="og:title" content="FoundrySuite | Your business. Your modules. One platform.">
     <meta property="og:description" content="Run your business on one platform—add the modules you need, when you need them. Business transformation software designed to simplify operations, unify data, and grow with your business.">
     <meta property="og:image" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
     <meta property="og:image:secure_url" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="FoundrySuite | Business Transformation Software — Your business. Your modules. One platform.">
+    <meta property="og:image:alt" content="FoundrySuite — Your business. Your modules. One platform.">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FoundrySuite | Business Transformation Software">
+    <meta name="twitter:title" content="FoundrySuite | Your business. Your modules. One platform.">
     <meta name="twitter:description" content="Run your business on one platform—add the modules you need, when you need them. Business transformation software designed to simplify operations, unify data, and grow with your business.">
     <meta name="twitter:image" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
-    <meta name="twitter:image:alt" content="FoundrySuite | Business Transformation Software — Your business. Your modules. One platform.">
+    <meta name="twitter:image:alt" content="FoundrySuite — Your business. Your modules. One platform.">
 
     <!-- Security -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'self'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests">
@@ -69,11 +69,18 @@
                         </a>
                     </div>
                     <ul class="nav-menu" id="navMenu">
+                        <li><a href="why.html" class="nav-link" aria-label="Why FoundrySuite">Why?</a></li>
                         <li><a href="#products" class="nav-link" data-scroll-to="products">Products</a></li>
+                        <li>
+                            <a href="platform.html" class="nav-link nav-link--platform" aria-label="Foundry Platform">Platform</a>
+                        </li>
                         <li><a href="#solutions" class="nav-link" data-scroll-to="solutions">Industries</a></li>
                         <li><a href="#services" class="nav-link" data-scroll-to="services">Services</a></li>
                         <li><a href="#about" class="nav-link" data-scroll-to="about">About</a></li>
                         <li><a href="#contact" class="nav-link" data-scroll-to="contact">Contact</a></li>
+                        <li class="nav-drawer-cta">
+                            <a href="#contact" class="nav-link nav-cta" data-scroll-to="contact">Book a Demo</a>
+                        </li>
                     </ul>
                     <div class="nav-actions">
                         <a href="https://login.foundrysuite.com" class="nav-link nav-login">Sign In</a>
@@ -94,7 +101,7 @@
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                             </svg>
                         </button>
-                        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -137,10 +144,21 @@
 
                                 <!-- Slide 2: Default Dashboard -->
                                 <div class="solution-slide" data-solution="dashboard">
-                                    <img src="assets/images/Branding/bid-hd.svg" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" loading="lazy">
+                                    <img src="assets/images/Branding/bid-hd.svg" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" fetchpriority="high" decoding="async">
+                                </div>
+
+                                <!-- Slide 3: Foundry Manufacturing -->
+                                <div class="solution-slide" data-solution="manufacturing">
+                                    <img src="assets/images/Products/foundry-manufacturing.png" alt="Foundry Manufacturing - Industrial Manufacturing enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
+                                    <div class="solution-slide-placeholder is-hidden">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry Manufacturing</h3>
+                                            <p>Industrial Manufacturing enterprises</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 
-                                <!-- Slide 3: Foundry Build - Construction -->
+                                <!-- Slide 4: Foundry Build - Construction -->
                                 <div class="solution-slide" data-solution="build">
                                     <img src="assets/images/Products/foundry-build.png" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder is-hidden">
@@ -151,7 +169,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Slide 4: Foundry Campus - Education -->
+                                <!-- Slide 5: Foundry Campus - Education -->
                                 <div class="solution-slide" data-solution="campus">
                                     <img src="assets/images/Products/foundry-campus.png" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder is-hidden">
@@ -162,7 +180,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Slide 5: Foundry Health - Healthcare -->
+                                <!-- Slide 6: Foundry Health - Healthcare -->
                                 <div class="solution-slide" data-solution="health">
                                     <img src="assets/images/Products/foundry-health.png" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder is-hidden">
@@ -173,7 +191,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Slide 6: Foundry IT - IT Services -->
+                                <!-- Slide 7: Foundry IT - IT Services -->
                                 <div class="solution-slide" data-solution="it">
                                     <img src="assets/images/Products/foundry-it.png" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder is-hidden">
@@ -184,7 +202,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Slide 7: Foundry Agri - Agriculture -->
+                                <!-- Slide 8: Foundry Agri - Agriculture -->
                                 <div class="solution-slide" data-solution="agri">
                                     <img src="assets/images/Products/foundry-agri.png" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder is-hidden">
@@ -203,13 +221,14 @@
                                     </svg>
                                 </button>
                                 <div class="slide-indicators">
-                                    <button class="slide-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
-                                    <button class="slide-indicator" data-slide="1" aria-label="Go to slide 2"></button>
-                                    <button class="slide-indicator" data-slide="2" aria-label="Go to slide 3"></button>
-                                    <button class="slide-indicator" data-slide="3" aria-label="Go to slide 4"></button>
-                                    <button class="slide-indicator" data-slide="4" aria-label="Go to slide 5"></button>
-                                    <button class="slide-indicator" data-slide="5" aria-label="Go to slide 6"></button>
-                                    <button class="slide-indicator" data-slide="6" aria-label="Go to slide 7"></button>
+                                    <button class="slide-indicator active" data-slide="0" data-label="FoundrySuite" aria-label="FoundrySuite" title="FoundrySuite"></button>
+                                    <button class="slide-indicator" data-slide="1" data-label="Dashboard" aria-label="Dashboard" title="Dashboard"></button>
+                                    <button class="slide-indicator" data-slide="2" data-label="Manufacturing" aria-label="Manufacturing" title="Manufacturing"></button>
+                                    <button class="slide-indicator" data-slide="3" data-label="Build" aria-label="Build" title="Build"></button>
+                                    <button class="slide-indicator" data-slide="4" data-label="Campus" aria-label="Campus" title="Campus"></button>
+                                    <button class="slide-indicator" data-slide="5" data-label="Health" aria-label="Health" title="Health"></button>
+                                    <button class="slide-indicator" data-slide="6" data-label="IT" aria-label="IT" title="IT"></button>
+                                    <button class="slide-indicator" data-slide="7" data-label="Agri" aria-label="Agri" title="Agri"></button>
                                 </div>
                                 <button class="slide-nav-btn next-btn" aria-label="Next slide">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -377,7 +396,7 @@
     </section>
 
     <!-- Why FoundrySuite — continuation of the Hero narrative -->
-    <section class="why-foundrysuite">
+    <section id="why" class="why-foundrysuite">
         <div class="container">
             <div class="why-foundrysuite-grid">
                 <div class="why-foundrysuite-copy">
@@ -385,6 +404,7 @@
                         <h2 class="section-title">Why FoundrySuite</h2>
                         <p class="section-subtitle">Most business software makes you adapt to it. FoundrySuite adapts to your business.</p>
                     </div>
+                    <a href="why.html" class="why-foundrysuite-link">See the full story</a>
                 </div>
                 <div class="why-foundrysuite-aside">
                     <ul class="why-foundrysuite-highlights">
@@ -393,7 +413,7 @@
                                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
                                 <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span>Pick down to the feature — buy just what you need inside a product, not the whole thing.</span>
+                            <span>Choose the modules you need — buy only what fits your business.</span>
                         </li>
                         <li>
                             <svg class="why-foundrysuite-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -401,6 +421,20 @@
                                 <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                             <span>One source of truth — no more disconnected systems and spreadsheets.</span>
+                        </li>
+                        <li>
+                            <svg class="why-foundrysuite-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <span>Real-time visibility — live dashboards, analytics, and actionable insights across your business.</span>
+                        </li>
+                        <li>
+                            <svg class="why-foundrysuite-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <span>Connected and intelligent — connect processes, data, workflows, and decisions across your business.</span>
                         </li>
                         <li>
                             <svg class="why-foundrysuite-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -433,8 +467,25 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Platform</h3>
-                        <p class="product-description">IAM, workflows, integrations, and enterprise-grade security. <a href="#contact" class="product-link" data-scroll-to="contact">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">19 enterprise engines powering identity, workflows, data, AI, automation, integrations, analytics, security, and enterprise operations.</p>
                     </div>
+                    <a href="platform.html" class="product-card-link" aria-label="Learn more about Foundry Platform"></a>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon product-icon-manufacturing">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 20h20"></path>
+                            <path d="M4 20V10l4 3V10l4 3V8h6v12"></path>
+                            <rect x="15" y="11" width="2" height="2"></rect>
+                            <rect x="15" y="15" width="2" height="2"></rect>
+                            <path d="M8 20v-3h4v3"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Manufacturing</h3>
+                        <p class="product-description">Planning, scheduling, capacity, materials, shop floor, quality, inventory, maintenance, and workflows.</p>
+                    </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Manufacturing"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-crm">
@@ -446,8 +497,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry CRM</h3>
-                        <p class="product-description">Sales, marketing, and customer lifecycle management. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Sales, marketing, and customer lifecycle management.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry CRM"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-projects">
@@ -457,8 +509,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Projects</h3>
-                        <p class="product-description">Project planning, delivery, cost control, and milestones across industries. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Project planning, delivery, cost control, and milestones across industries.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Projects"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-work">
@@ -469,8 +522,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Work Management</h3>
-                        <p class="product-description">Tasks, approvals, alerts, and structured job flows. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Tasks, approvals, alerts, and structured job flows.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Work Management"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-hcm">
@@ -483,8 +537,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry HCM</h3>
-                        <p class="product-description">People, contractors, attendance, payroll, and workforce compliance. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">People, contractors, attendance, payroll, and workforce compliance.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry HCM"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-finance">
@@ -495,8 +550,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Finance & Accounting</h3>
-                        <p class="product-description">General ledger, billing, receivables, payables, and financial control. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">General ledger, billing, receivables, payables, and financial control.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Finance & Accounting"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-supply">
@@ -508,8 +564,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Supply Chain & Assets</h3>
-                        <p class="product-description">Procurement, inventory, equipment, and asset lifecycle management. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Procurement, inventory, equipment, and asset lifecycle management.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Supply Chain & Assets"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-dms">
@@ -523,8 +580,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry DMS</h3>
-                        <p class="product-description">Documents & Drawings management with version control & approvals. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Documents & Drawings management with version control & approvals.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry DMS"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-quality">
@@ -535,8 +593,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Quality & Compliance</h3>
-                        <p class="product-description">Quality inspections, standards, audits, and compliance workflows. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Quality inspections, standards, audits, and compliance workflows.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Quality & Compliance"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-hse">
@@ -546,8 +605,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry HSE</h3>
-                        <p class="product-description">Health, Safety & Environment management for risk-driven industries. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Health, Safety & Environment management for risk-driven industries.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry HSE"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-itsm">
@@ -559,8 +619,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry IT Service Management</h3>
-                        <p class="product-description">IT and enterprise service management for internal teams. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">IT and enterprise service management for internal teams.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry IT Service Management"></a>
                 </div>
                 <div class="product-card">
                     <div class="product-icon product-icon-analytics">
@@ -572,9 +633,13 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Foundry Analytics</h3>
-                        <p class="product-description">Dashboards, insights, and data-driven decision support. <a href="#contact" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                        <p class="product-description">Dashboards, insights, and data-driven decision support.</p>
                     </div>
+                    <a href="#contact" class="product-card-link" data-scroll-to="contact" aria-label="Talk to us about Foundry Analytics"></a>
                 </div>
+            </div>
+            <div class="products-cta">
+                <a href="#contact" class="btn btn-primary" data-scroll-to="contact">Talk to us about modules</a>
             </div>
         </div>
     </section>
@@ -593,6 +658,21 @@
                 <h3 class="subsection-title">Industry Solutions</h3>
                 <p class="subsection-subtitle">Industry-focused solutions built on the Foundry platform.</p>
                 <div class="solutions-grid">
+                    <div class="solution-card">
+                        <div class="solution-icon solution-icon-manufacturing">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 20h20"></path>
+                                <path d="M4 20V10l4 3V10l4 3V8h6v12"></path>
+                                <rect x="15" y="11" width="2" height="2"></rect>
+                                <rect x="15" y="15" width="2" height="2"></rect>
+                                <path d="M8 20v-3h4v3"></path>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry Manufacturing</h3>
+                            <p class="solution-description">Industrial manufacturing enterprises.</p>
+                        </div>
+                    </div>
                     <div class="solution-card solution-card-build">
                         <div class="solution-icon solution-icon-build">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -722,6 +802,25 @@
                             <div class="solution-content">
                                 <h3 class="solution-title">Services Pack</h3>
                                 <p class="solution-description">Consulting and service-led business models across industries</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="solution-icon solution-icon-manufacturing-pack">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 2v3"></path>
+                                    <path d="M12 19v3"></path>
+                                    <path d="M4.93 4.93l2.12 2.12"></path>
+                                    <path d="M16.95 16.95l2.12 2.12"></path>
+                                    <path d="M2 12h3"></path>
+                                    <path d="M19 12h3"></path>
+                                    <path d="M4.93 19.07l2.12-2.12"></path>
+                                    <path d="M16.95 7.05l2.12-2.12"></path>
+                                </svg>
+                            </div>
+                            <div class="solution-content">
+                                <h3 class="solution-title">Manufacturing Pack</h3>
+                                <p class="solution-description">Planning, production, materials & capacity, scheduling, shop floor, quality, and inventory.</p>
                             </div>
                         </div>
                     </div>
@@ -859,9 +958,10 @@
             </div>
             <div class="services-cta-section">
                 <h3 class="services-cta-title">Let's Build Your FoundrySuite, the Right Way</h3>
+                <p class="services-cta-text">Start with the modules you need. We configure around your business — not a multi-year suite rollout.</p>
                 <div class="services-cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Book a Demo</a>
-                    <a href="#contact" class="btn btn-secondary">Talk to an Expert</a>
+                    <a href="#contact" class="btn btn-primary" data-scroll-to="contact">Book a Demo</a>
+                    <a href="#contact" class="btn btn-secondary" data-scroll-to="contact">Talk to an Expert</a>
                 </div>
             </div>
         </div>
@@ -872,6 +972,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Engagement Process</h2>
+                <p class="section-subtitle">A configuration-led path to go-live — not a multi-year ERP program.</p>
             </div>
             <div class="process-steps">
                 <div class="process-step">
@@ -885,6 +986,7 @@
                         </svg>
                     </div>
                     <h3 class="process-step-title">Understand Your Business</h3>
+                    <p class="process-step-text">Map how you operate and choose the modules that fit.</p>
                 </div>
                 <div class="process-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -900,6 +1002,7 @@
                         </svg>
                     </div>
                     <h3 class="process-step-title">Configure & Tailor</h3>
+                    <p class="process-step-text">Set up the platform around how you already work.</p>
                 </div>
                 <div class="process-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -915,6 +1018,7 @@
                         </svg>
                     </div>
                     <h3 class="process-step-title">Test & Validate</h3>
+                    <p class="process-step-text">Confirm processes, data, and access before go-live.</p>
                 </div>
                 <div class="process-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -929,6 +1033,7 @@
                         </svg>
                     </div>
                     <h3 class="process-step-title">Go Live</h3>
+                    <p class="process-step-text">Launch with support — not a cutover you face alone.</p>
                 </div>
                 <div class="process-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -945,6 +1050,7 @@
                         </svg>
                     </div>
                     <h3 class="process-step-title">Support & Scale</h3>
+                    <p class="process-step-text">Add modules as you grow. Same platform.</p>
                 </div>
             </div>
         </div>
@@ -955,14 +1061,18 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Who We Support</h2>
-                <p class="section-subtitle">FoundrySuite Services are designed to support organizations of every size, industry, and stage of growth.</p>
+                <p class="section-subtitle">From growing companies to multi-location enterprises — on one platform, across industries.</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-pill">Growing Businesses</div>
                 <div class="benefit-pill">Enterprises</div>
                 <div class="benefit-pill">Multi-location Organizations</div>
-                <div class="benefit-pill">Service-Based Companies</div>
-                <div class="benefit-pill">Education & Delivery-Focused Organizations</div>
+                <div class="benefit-pill">Manufacturing</div>
+                <div class="benefit-pill">Construction</div>
+                <div class="benefit-pill">Education & Institutions</div>
+                <div class="benefit-pill">Healthcare</div>
+                <div class="benefit-pill">IT & Services</div>
+                <div class="benefit-pill">Agriculture</div>
             </div>
         </div>
     </section>
@@ -972,56 +1082,71 @@
         <div class="container">
             <div class="about-text">
                 <h2 class="section-title">About <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></h2>
-                <p>FoundrySuite is a cloud-native business transformation platform designed to help organizations modernize, operate, and grow through a unified portfolio of business products.</p>
-                <p>Built on the Foundry Platform, every FoundrySuite product shares a common foundation for security, data, integration, and administration—delivering a consistent enterprise experience across the organization.</p>
-                <p>Whether you start with a single product or adopt multiple industry solutions, FoundrySuite grows with your business while maintaining one platform, one experience, and one source of truth.</p>
+                <p>FoundrySuite is a modular enterprise platform for organizations that want one system — not a traditional ERP or CRM suite they have to live inside.</p>
+                <p>You start with the products you need and add more as operations grow. You don't buy the whole stack to get started, and you don't spend years implementing software the business then has to adapt to.</p>
+                <p>Every product sits on the Foundry Platform, so identity, security, data, workflows, and administration stay consistent. One platform, one experience, and one source of truth — instead of CRM in one place, operations in another, and integrations in between.</p>
             </div>
             <div class="about-mission-vision-wrapper">
                 <div class="about-left-content">
                     <div class="mission-section">
-                        <h3 class="mission-title">🎯 Mission</h3>
-                        <p class="mission-text">To empower businesses with modular, integrated digital solutions that simplify operations, enhance visibility, and enable sustainable growth.</p>
+                        <h3 class="mission-title">Mission</h3>
+                        <p class="mission-text">To give organizations enterprise-grade operations on one modular platform — the capability of a suite, without the complexity, lock-in, and cost of traditional ERP and CRM software.</p>
                     </div>
                     <div class="mission-section vision-section">
-                        <h3 class="mission-title">👁️ Vision</h3>
-                        <p class="mission-text">To become a trusted platform for service-focused businesses, enabling them to build, scale, and run their operations on one unified ecosystem.</p>
+                        <h3 class="mission-title">Vision</h3>
+                        <p class="mission-text">To be the platform businesses choose to run on — across industries — instead of assembling a stack of apps or committing to a heavyweight suite.</p>
                     </div>
                     <div class="core-values-section">
-                        <h3 class="mission-title">💡 Core Values</h3>
+                        <h3 class="mission-title">Core Values</h3>
                         <div class="values-list">
                             <div class="value-item">
-                                <div class="value-number">1️⃣</div>
+                                <svg class="value-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                    <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
                                 <div class="value-content">
                                     <h4 class="value-title">Simplicity with Purpose</h4>
-                                    <p class="value-description">We design solutions that are intuitive, practical, and easy to adopt—without unnecessary complexity.</p>
+                                    <p class="value-description">Enterprise capability without the overhead that makes software hard to adopt — no consultant-only rollouts.</p>
                                 </div>
                             </div>
                             <div class="value-item">
-                                <div class="value-number">2️⃣</div>
+                                <svg class="value-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                    <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
                                 <div class="value-content">
                                     <h4 class="value-title">Modularity & Flexibility</h4>
-                                    <p class="value-description">Our platform is built to adapt. Businesses choose what they need and scale at their own pace.</p>
+                                    <p class="value-description">Buy only what you need. Expand without a new suite, a new implementation, or a rip-and-replace.</p>
                                 </div>
                             </div>
                             <div class="value-item">
-                                <div class="value-number">3️⃣</div>
+                                <svg class="value-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                    <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
                                 <div class="value-content">
                                     <h4 class="value-title">Trust & Security</h4>
-                                    <p class="value-description">We prioritize data protection, access control, and enterprise-grade security at every layer.</p>
+                                    <p class="value-description">Enterprise-grade security, access control, and data protection are built in from day one — not a later phase.</p>
                                 </div>
                             </div>
                             <div class="value-item">
-                                <div class="value-number">4️⃣</div>
+                                <svg class="value-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                    <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
                                 <div class="value-content">
                                     <h4 class="value-title">Customer-Centric Design</h4>
-                                    <p class="value-description">We build based on real business workflows, not assumptions or trends.</p>
+                                    <p class="value-description">The software fits your operating workflows — you don't restructure the business to match a vendor's model.</p>
                                 </div>
                             </div>
                             <div class="value-item">
-                                <div class="value-number">5️⃣</div>
+                                <svg class="value-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle>
+                                    <path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
                                 <div class="value-content">
                                     <h4 class="value-title">Continuous Improvement</h4>
-                                    <p class="value-description">We evolve constantly, learning from users and improving through iteration.</p>
+                                    <p class="value-description">The platform keeps getting stronger from real use — not through disruptive upgrade cycles.</p>
                                 </div>
                             </div>
                         </div>
@@ -1032,8 +1157,6 @@
                         <img src="assets/images/About/about-us.jpg" alt="About FoundrySuite" class="about-image" loading="lazy">
                     </div>
                 </div>
-            </div>
-            <div class="about-text">
             </div>
         </div>
     </section>
@@ -1047,6 +1170,7 @@
             </div>
             <div class="contact-content">
                 <div class="contact-info">
+                    <p class="contact-lead">Send the form, or email us directly. We typically reply within one business day.</p>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1056,28 +1180,36 @@
                         </div>
                         <div>
                             <h3>Business Enquiries</h3>
-                            <p><a href="mailto:parameswaran.cp@foundrysuite.com">parameswaran.cp@foundrysuite.com</a></p>
+                            <p><a href="mailto:enquiry@foundrysuite.com">enquiry@foundrysuite.com</a></p>
                         </div>
                     </div>
-                    <div class="form-group form-group-full">
-                        <label for="description" class="form-label">Please provide a brief description of how FoundrySuite can help you <span class="required">*</span></label>
-                        <textarea id="description" name="message" form="contactForm" rows="10" placeholder="Enter your description here..." minlength="5" maxlength="5000" required></textarea>
-                        <span class="error-message" id="descriptionError"></span>
+                    <div class="contact-next">
+                        <h3 class="contact-next-title">What happens next</h3>
+                        <ol class="contact-next-list">
+                            <li>We review your request</li>
+                            <li>We follow up to understand your needs</li>
+                            <li>We schedule a demo</li>
+                        </ol>
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdrolyg" method="POST" novalidate>
                     <!-- Honeypot — leave empty; bots that fill it are rejected -->
                     <input type="text" name="_gotcha" id="contactHoneypot" class="hp-field" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="form-group form-group-full">
+                        <label for="firstName" class="form-label">Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="name" placeholder="Enter your name" autocomplete="name" required>
+                        <span class="error-message" id="firstNameError"></span>
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" minlength="3" maxlength="15" pattern="[A-Za-z\s]+" required>
-                            <span class="error-message" id="firstNameError"></span>
+                            <label for="email" class="form-label">Business e-mail address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Enter your business email" required>
+                            <span class="error-message" id="emailError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="lastName" class="form-label">Last Name <span class="required">*</span></label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" minlength="1" maxlength="15" pattern="[A-Za-z\s]+" required>
-                            <span class="error-message" id="lastNameError"></span>
+                            <label for="company" class="form-label">Company <span class="required">*</span></label>
+                            <input type="text" id="company" name="company" placeholder="Enter your company name" minlength="5" maxlength="50" pattern="[A-Za-z0-9][A-Za-z0-9\s.&'\-]*" required>
+                            <span class="error-message" id="companyError"></span>
                         </div>
                     </div>
                     <div class="form-row">
@@ -1160,7 +1292,7 @@
                             <span class="error-message" id="countryError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="form-label">Phone <span class="required">*</span></label>
+                            <label for="phone" class="form-label">Phone</label>
                             <div class="phone-input-wrapper">
                                 <div class="phone-code-wrapper">
                                     <select id="phoneCode" name="phoneCode" class="phone-code">
@@ -1240,27 +1372,15 @@
                                     <span class="phone-flag-display" id="phoneFlagDisplay">🇮🇳</span>
                                     <span class="phone-code-display" id="phoneCodeDisplay">+91</span>
                                 </div>
-                                <input type="tel" id="phone" name="phone" placeholder="Contact Number" class="phone-number" minlength="7" maxlength="16" pattern="[0-9]+(-[0-9]+)?" inputmode="numeric" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Contact Number" class="phone-number" minlength="7" maxlength="16" pattern="[0-9]+(-[0-9]+)?" inputmode="numeric">
                             </div>
                             <span class="error-message" id="phoneError"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="email" class="form-label">Business e-mail address <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" placeholder="Enter your business email" required>
-                            <span class="error-message" id="emailError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="company" class="form-label">Company <span class="required">*</span></label>
-                            <input type="text" id="company" name="company" placeholder="Enter your company name" minlength="5" maxlength="50" pattern="[A-Za-z0-9][A-Za-z0-9\s.&'\-]*" required>
-                            <span class="error-message" id="companyError"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group form-group-full">
-                            <label for="relationship" class="form-label">Relationship to FoundrySuite <span class="required">*</span></label>
-                            <select id="relationship" name="relationship" required>
+                            <label for="relationship" class="form-label">Relationship to FoundrySuite</label>
+                            <select id="relationship" name="relationship">
                                 <option value="">Please select</option>
                                 <option value="prospective-customer">Prospective Customer</option>
                                 <option value="customer">Customer</option>
@@ -1275,12 +1395,17 @@
                             <span class="error-message" id="relationshipError"></span>
                         </div>
                     </div>
+                    <div class="form-group form-group-full">
+                        <label for="description" class="form-label">Message</label>
+                        <textarea id="description" name="message" rows="4" placeholder="Tell us what you need (optional)" maxlength="5000"></textarea>
+                        <span class="error-message" id="descriptionError"></span>
+                    </div>
                     <div class="form-group form-group-full captcha-group">
-                        <label for="captchaAnswer" class="form-label">Security Check <span class="required">*</span></label>
+                        <label for="captchaAnswer" class="form-label">Captcha <span class="required">*</span></label>
                         <div class="captcha-container">
                             <div class="captcha-question-box">
-                                <span id="captchaQuestion"></span>
-                                <button type="button" id="captchaRefresh" class="captcha-refresh-btn" aria-label="Refresh CAPTCHA" title="Refresh CAPTCHA">
+                                <canvas id="captchaCanvas" class="captcha-canvas" width="148" height="48" aria-hidden="true"></canvas>
+                                <button type="button" id="captchaRefresh" class="captcha-refresh-btn" aria-label="Refresh captcha" title="Refresh captcha">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M23 4v6h-6"></path>
                                         <path d="M1 20v-6h6"></path>
@@ -1288,7 +1413,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <input type="text" id="captchaAnswer" name="captchaAnswer" placeholder="Enter your answer" required>
+                            <input type="text" id="captchaAnswer" name="captchaAnswer" placeholder="Enter the characters" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
                         </div>
                         <span class="error-message" id="captchaAnswerError"></span>
                     </div>
@@ -1342,12 +1467,14 @@
                             loading="lazy"
                         >
                     </a>
-                    <p>Empowering Business Transformation Through One Unified Platform.</p>
+                    <p>Your business. Your modules. One platform.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="why.html">Why FoundrySuite</a></li>
                         <li><a href="#products" data-scroll-to="products">Products</a></li>
+                        <li><a href="platform.html">Foundry Platform</a></li>
                         <li><a href="#solutions" data-scroll-to="solutions">Industries</a></li>
                         <li><a href="#services" data-scroll-to="services">Services</a></li>
                         <li><a href="#about" data-scroll-to="about">About</a></li>

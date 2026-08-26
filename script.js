@@ -64,7 +64,7 @@ const DOM = {
     contactForm: document.getElementById('contactForm'),
     countrySelect: document.getElementById('country'),
     phoneCodeSelect: document.getElementById('phoneCode'),
-    captchaQuestion: document.getElementById('captchaQuestion'),
+    captchaCanvas: document.getElementById('captchaCanvas'),
     captchaAnswer: document.getElementById('captchaAnswer'),
     captchaRefresh: document.getElementById('captchaRefresh'),
     phoneFlagDisplay: document.getElementById('phoneFlagDisplay'),
@@ -74,7 +74,6 @@ const DOM = {
     // Form fields
     description: document.getElementById('description'),
     firstName: document.getElementById('firstName'),
-    lastName: document.getElementById('lastName'),
     email: document.getElementById('email'),
     company: document.getElementById('company'),
     relationship: document.getElementById('relationship'),
@@ -99,7 +98,7 @@ const DOM = {
 // ============================================================================
 // CONSTANTS
 // ============================================================================
-const FORM_FIELDS = ['description', 'firstName', 'lastName', 'country', 'phone', 'email', 'company', 'relationship'];
+const FORM_FIELDS = ['description', 'firstName', 'country', 'phone', 'email', 'company', 'relationship'];
 const NAVBAR_SCROLL_THRESHOLD = 100;
 const SCROLL_OFFSET = 10;
 const SLIDESHOW_INTERVAL = 8000;
@@ -408,7 +407,11 @@ const scrollToSection = (targetId, { smooth = true } = {}) => {
 
 const closeMobileNav = () => {
     if (DOM.navMenu) DOM.navMenu.classList.remove('active');
-    if (DOM.navToggle) DOM.navToggle.classList.remove('active');
+    if (DOM.navToggle) {
+        DOM.navToggle.classList.remove('active');
+        DOM.navToggle.setAttribute('aria-expanded', 'false');
+    }
+    document.body.classList.remove('nav-open');
 };
 
 /**
@@ -447,7 +450,8 @@ const updateActiveNavLink = () => {
                 link.classList.contains('nav-login') ||
                 link.classList.contains('nav-cta') ||
                 link.classList.contains('nav-link--platform') ||
-                /foundry-platform\.html/i.test(link.getAttribute('href') || '')
+                /(?:foundry-)?platform\.html/i.test(link.getAttribute('href') || '') ||
+                /why\.html/i.test(link.getAttribute('href') || '')
             ) {
                 link.classList.remove('active');
                 return;
@@ -493,7 +497,8 @@ const initSmoothScroll = () => {
         if (
             link.classList.contains('nav-link--platform') ||
             link.classList.contains('nav-login') ||
-            /foundry-platform\.html(?:[?#]|$)/i.test(href) ||
+            /(?:foundry-)?platform\.html(?:[?#]|$)/i.test(href) ||
+            /why\.html(?:[?#]|$)/i.test(href) ||
             /login\.html(?:[?#]|$)/i.test(href) ||
             /login\.foundrysuite\.com/i.test(href)
         ) {
@@ -529,9 +534,25 @@ const initSmoothScroll = () => {
  */
 const initMobileNav = () => {
     if (DOM.navToggle && DOM.navMenu) {
+        const syncToggleState = () => {
+            const isOpen = DOM.navMenu.classList.contains('active');
+            DOM.navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.classList.toggle('nav-open', isOpen);
+        };
+
+        DOM.navToggle.setAttribute('aria-expanded', 'false');
         DOM.navToggle.addEventListener('click', () => {
             DOM.navMenu.classList.toggle('active');
             DOM.navToggle.classList.toggle('active');
+            syncToggleState();
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1100) {
+                closeMobileNav();
+                document.body.classList.remove('nav-open');
+                DOM.navToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 };
@@ -608,64 +629,75 @@ const findPhoneCodeOption = (selectedCountry, phoneCode) => {
 };
 
 /**
- * Generate a random math CAPTCHA question
- * Returns an object with { question: string, answer: number }
+ * Draw a text CAPTCHA onto the canvas
+ */
+const drawCaptcha = (text) => {
+    const canvas = DOM.captchaCanvas;
+    if (!canvas || !canvas.getContext) return;
+
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    ctx.fillStyle = isDark ? '#1e293b' : '#e2e8f0';
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < 8; i++) {
+        ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.35)' : 'rgba(15, 23, 42, 0.18)';
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * width, Math.random() * height);
+        ctx.lineTo(Math.random() * width, Math.random() * height);
+        ctx.stroke();
+    }
+
+    ctx.textBaseline = 'middle';
+    ctx.font = 'bold 26px ui-sans-serif, system-ui, sans-serif';
+    const startX = 14;
+    for (let i = 0; i < text.length; i++) {
+        ctx.save();
+        ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+        ctx.translate(startX + i * 24, height / 2 + (Math.random() * 8 - 4));
+        ctx.rotate((Math.random() - 0.5) * 0.35);
+        ctx.fillText(text[i], 0, 0);
+        ctx.restore();
+    }
+};
+
+/**
+ * Generate a random text CAPTCHA
+ * Returns an object with { answer: string }
  */
 let currentCaptchaAnswer = null;
 
 const generateCaptcha = () => {
-    const num1 = Math.floor(Math.random() * 10) + 1; // 1-10
-    const num2 = Math.floor(Math.random() * 10) + 1; // 1-10
-    const operations = ['+', '-', '*'];
-    const operation = operations[Math.floor(Math.random() * operations.length)];
-    
-    let answer;
-    let question;
-    
-    switch (operation) {
-        case '+':
-            answer = num1 + num2;
-            question = `${num1} + ${num2} = ?`;
-            break;
-        case '-':
-            // Ensure positive result
-            const larger = Math.max(num1, num2);
-            const smaller = Math.min(num1, num2);
-            answer = larger - smaller;
-            question = `${larger} - ${smaller} = ?`;
-            break;
-        case '*':
-            answer = num1 * num2;
-            question = `${num1} × ${num2} = ?`;
-            break;
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let answer = '';
+    for (let i = 0; i < 5; i++) {
+        answer += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    
     currentCaptchaAnswer = answer;
-    return { question, answer };
+    drawCaptcha(answer);
+    return { answer };
 };
 
 /**
  * Initialize CAPTCHA
  */
 const initCaptcha = () => {
-    if (!DOM.captchaQuestion || !DOM.captchaAnswer) return;
-    
-    // Generate initial CAPTCHA
-    const captcha = generateCaptcha();
-    DOM.captchaQuestion.textContent = captcha.question;
+    if (!DOM.captchaCanvas || !DOM.captchaAnswer) return;
+
+    generateCaptcha();
     DOM.captchaAnswer.value = '';
-    
-    // Clear error on input
+
     DOM.captchaAnswer.addEventListener('input', () => {
         hideError('captchaAnswer');
         DOM.captchaAnswer.classList.remove('error');
     });
-    
-    // Refresh CAPTCHA button
+
     if (DOM.captchaRefresh) {
         DOM.captchaRefresh.addEventListener('click', () => {
-            const captcha = generateCaptcha();
-            DOM.captchaQuestion.textContent = captcha.question;
+            generateCaptcha();
             DOM.captchaAnswer.value = '';
             hideError('captchaAnswer');
             DOM.captchaAnswer.classList.remove('error');
@@ -840,15 +872,14 @@ const setupAlphaOnlyField = (input, fieldId) => {
  */
 const setCustomValidationMessages = () => {
     const fields = {
-        description: 'Please provide a description (minimum 5 characters)',
-        firstName: 'Please enter your first name (3-15 characters)',
-        lastName: 'Please enter your last name (1-15 characters)',
+        description: 'Please add a message',
+        firstName: 'Please enter your name',
         country: 'Please select your country/region',
         phone: 'Please enter your contact number (7-15 digits, numeric only)',
         email: 'Please enter valid e-mail address...',
         company: 'Please enter your company name (5-50 characters)',
         relationship: 'Please select your relationship to FoundrySuite',
-        captchaAnswer: 'Please solve the security check correctly'
+        captchaAnswer: 'Please enter the captcha characters'
     };
     
     Object.entries(fields).forEach(([fieldId, message]) => {
@@ -869,9 +900,8 @@ const validateField = (fieldId, value) => {
     
     switch (fieldId) {
         case 'description':
-            if (!trimmed) return 'Please provide a description';
-            if (trimmed.length < 5) return 'Description must be at least 5 characters';
-            if (trimmed.length > 5000) return 'Description must not exceed 5000 characters';
+            if (!trimmed) return null;
+            if (trimmed.length > 5000) return 'Message must not exceed 5000 characters';
             if (looksLikeScriptInjection(trimmed)) {
                 return 'Invalid characters detected. Please remove HTML or script content.';
             }
@@ -879,23 +909,9 @@ const validateField = (fieldId, value) => {
             
         case 'firstName':
             if (Security.detectSQLInjection(trimmed) || looksLikeScriptInjection(trimmed)) {
-                return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
+                return 'Invalid characters detected. Please remove HTML or script content.';
             }
-            if (!trimmed) return 'Please enter your first name';
-            if (!/^[A-Za-z\s]+$/.test(trimmed)) return 'First name must contain only alphabetic characters';
-            if (trimmed.length < 3) return 'First name must be at least 3 characters';
-            if (trimmed.length > 15) return 'First name must not exceed 15 characters';
-            return null;
-            
-        case 'lastName':
-            // Security: Check for SQL injection and XSS patterns
-            if (Security.detectSQLInjection(trimmed) || looksLikeScriptInjection(trimmed)) {
-                return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
-            }
-            if (!trimmed) return 'Please enter your last name';
-            if (!/^[A-Za-z\s]+$/.test(trimmed)) return 'Last name must contain only alphabetic characters';
-            if (trimmed.length < 1) return 'Last name must be at least 1 character';
-            if (trimmed.length > 15) return 'Last name must not exceed 15 characters';
+            if (!trimmed) return 'Please enter your name';
             return null;
             
         case 'country':
@@ -913,7 +929,7 @@ const validateField = (fieldId, value) => {
             return null; // Valid country selection
             
         case 'phone':
-            if (!trimmed) return 'Please enter your contact number';
+            if (!trimmed) return null;
             const phoneDigits = trimmed.replace(/[^0-9]/g, '');
             const hasMultipleHyphens = (trimmed.match(/-/g) || []).length > 1;
             if (!/^[0-9]+(-[0-9]+)?$/.test(trimmed)) return 'Phone number must contain only numeric digits with optional hyphen';
@@ -940,11 +956,10 @@ const validateField = (fieldId, value) => {
             return null;
             
         case 'relationship':
-            return !value ? 'Please select your relationship to FoundrySuite' : null;
+            return null;
             
         case 'captchaAnswer':
-            if (!trimmed) return 'Please solve the security check correctly';
-            // CAPTCHA validation is handled separately in initFormSubmission
+            if (!trimmed) return 'Please enter the captcha characters';
             return null;
             
         default:
@@ -983,9 +998,8 @@ const resetContactFormAfterSuccess = () => {
 
     clearAllErrors();
 
-    if (DOM.captchaQuestion && DOM.captchaAnswer) {
-        const captcha = generateCaptcha();
-        DOM.captchaQuestion.textContent = captcha.question;
+    if (DOM.captchaCanvas && DOM.captchaAnswer) {
+        generateCaptcha();
         DOM.captchaAnswer.value = '';
     }
 };
@@ -1010,9 +1024,7 @@ const initFormSubmission = () => {
         }
     });
     
-    // Setup alphabetic-only fields
-    setupAlphaOnlyField(DOM.firstName, 'firstName');
-    setupAlphaOnlyField(DOM.lastName, 'lastName');
+    // Setup restricted fields
     setupAlphaOnlyField(DOM.company, 'company');
     
     // Form validation before submission (Formspree will handle the actual submission)
@@ -1103,29 +1115,23 @@ const initFormSubmission = () => {
             if (!userAnswer) {
                 errorsToShow.push({ 
                     fieldId: 'captchaAnswer', 
-                    error: 'Please solve the security check correctly',
+                    error: 'Please enter the captcha characters',
                     field: DOM.captchaAnswer
                 });
                 hasErrors = true;
+            } else if (userAnswer.toUpperCase() !== String(currentCaptchaAnswer || '').toUpperCase()) {
+                errorsToShow.push({ 
+                    fieldId: 'captchaAnswer', 
+                    error: 'Captcha did not match. Please try again.',
+                    field: DOM.captchaAnswer
+                });
+                generateCaptcha();
+                DOM.captchaAnswer.value = '';
+                hasErrors = true;
             } else {
-                const answerNum = parseInt(userAnswer, 10);
-                if (isNaN(answerNum) || answerNum !== currentCaptchaAnswer) {
-                    errorsToShow.push({ 
-                        fieldId: 'captchaAnswer', 
-                        error: 'Please solve the security check correctly',
-                        field: DOM.captchaAnswer
-                    });
-                    // Generate new CAPTCHA on wrong answer
-                    const captcha = generateCaptcha();
-                    DOM.captchaQuestion.textContent = captcha.question;
-                    DOM.captchaAnswer.value = '';
-                    hasErrors = true;
-                } else {
-                    // CAPTCHA is valid, clear any previous errors
-                    hideError('captchaAnswer');
-                    DOM.captchaAnswer.setCustomValidity('');
-                    DOM.captchaAnswer.classList.remove('error');
-                }
+                hideError('captchaAnswer');
+                DOM.captchaAnswer.setCustomValidity('');
+                DOM.captchaAnswer.classList.remove('error');
             }
         }
         
@@ -1164,13 +1170,16 @@ const initFormSubmission = () => {
         const submitFormData = new FormData();
 
         // Sanitize and copy validated fields (include form-associated description via form attribute)
-        const fieldNames = ['firstName', 'lastName', 'country', 'phoneCode', 'phone', 'email', 'company', 'relationship', 'captchaAnswer'];
+        const fieldNames = ['name', 'country', 'phoneCode', 'phone', 'email', 'company', 'relationship'];
         fieldNames.forEach((name) => {
             const el = DOM.contactForm.elements.namedItem(name) || getElement(name);
             if (!el || typeof el.value !== 'string') return;
-            const safe = name === 'email' || name === 'phone' || name === 'phoneCode' || name === 'country' || name === 'relationship' || name === 'captchaAnswer'
-                ? String(el.value).trim()
-                : sanitizeFormText(String(el.value).trim());
+            const raw = String(el.value).trim();
+            if (!raw && (name === 'phone' || name === 'phoneCode' || name === 'relationship')) return;
+            if (name === 'phoneCode' && !(DOM.phoneInput && String(DOM.phoneInput.value || '').trim())) return;
+            const safe = name === 'email' || name === 'phone' || name === 'phoneCode' || name === 'country' || name === 'relationship'
+                ? raw
+                : sanitizeFormText(raw);
             submitFormData.append(name, safe);
         });
 
@@ -1178,7 +1187,9 @@ const initFormSubmission = () => {
         const descriptionValue = descriptionField && typeof descriptionField.value === 'string'
             ? sanitizeFormText(descriptionField.value.trim())
             : '';
-        submitFormData.append('message', descriptionValue);
+        if (descriptionValue) {
+            submitFormData.append('message', descriptionValue);
+        }
         
         // Add Formspree-specific fields to improve email delivery and reduce spam detection
         submitFormData.append('_subject', 'New Contact Form Submission from FoundrySuite Website');
@@ -1339,21 +1350,36 @@ const initSolutionSlideshow = () => {
     
     let currentSlide = 0;
     let slideInterval = null;
+    const compactHero = window.matchMedia('(max-width: 968px)');
+    const slideCount = DOM.slides.length;
+    const isOrbitSlide = (index) => DOM.slides[index]?.dataset.solution === 'orbit';
+    const isCompactHero = () => compactHero.matches;
+    const shouldSkipSlide = (index) => isCompactHero() && isOrbitSlide(index);
+
+    const wrapIndex = (from, step) => {
+        let index = from;
+        for (let i = 0; i < slideCount; i += 1) {
+            index = (index + step + slideCount) % slideCount;
+            if (!shouldSkipSlide(index)) return index;
+        }
+        return from;
+    };
     
     const showSlide = (index) => {
         try {
+            const next = shouldSkipSlide(index) ? wrapIndex(index, 1) : index;
             DOM.slides.forEach(slide => slide.classList.remove('active'));
             if (DOM.indicators) {
                 DOM.indicators.forEach(indicator => indicator.classList.remove('active'));
             }
             
-            if (DOM.slides[index]) DOM.slides[index].classList.add('active');
-            if (DOM.indicators && DOM.indicators[index]) DOM.indicators[index].classList.add('active');
+            if (DOM.slides[next]) DOM.slides[next].classList.add('active');
+            if (DOM.indicators && DOM.indicators[next]) DOM.indicators[next].classList.add('active');
             
-            currentSlide = index;
+            currentSlide = next;
             
             if (DOM.mobileScreens && DOM.mobileScreens.length > 0) {
-                const mobileScreenIndex = index % DOM.mobileScreens.length;
+                const mobileScreenIndex = next % DOM.mobileScreens.length;
                 DOM.mobileScreens.forEach((screen, i) => {
                     screen.classList.toggle('active', i === mobileScreenIndex);
                 });
@@ -1363,8 +1389,8 @@ const initSolutionSlideshow = () => {
         }
     };
     
-    const nextSlide = () => showSlide((currentSlide + 1) % DOM.slides.length);
-    const prevSlide = () => showSlide((currentSlide - 1 + DOM.slides.length) % DOM.slides.length);
+    const nextSlide = () => showSlide(wrapIndex(currentSlide, 1));
+    const prevSlide = () => showSlide(wrapIndex(currentSlide, -1));
     
     const startSlideshow = () => {
         if (slideInterval) clearInterval(slideInterval);
@@ -1396,6 +1422,7 @@ const initSolutionSlideshow = () => {
     
     DOM.indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
+            if (shouldSkipSlide(index)) return;
             stopSlideshow();
             showSlide(index);
             startSlideshow();
@@ -1405,8 +1432,33 @@ const initSolutionSlideshow = () => {
     if (DOM.slideshow) {
         DOM.slideshow.addEventListener('mouseenter', stopSlideshow);
         DOM.slideshow.addEventListener('mouseleave', startSlideshow);
+        DOM.slideshow.addEventListener('focusin', stopSlideshow);
+        DOM.slideshow.addEventListener('focusout', (event) => {
+            if (!DOM.slideshow.contains(event.relatedTarget)) {
+                startSlideshow();
+            }
+        });
     }
-    
+
+    const syncHeroBreakpoint = () => {
+        DOM.indicators.forEach((indicator, index) => {
+            const skip = shouldSkipSlide(index);
+            indicator.toggleAttribute('hidden', skip);
+            indicator.setAttribute('aria-hidden', skip ? 'true' : 'false');
+            indicator.tabIndex = skip ? -1 : 0;
+        });
+        if (shouldSkipSlide(currentSlide)) {
+            showSlide(wrapIndex(currentSlide, 1));
+        }
+    };
+    if (typeof compactHero.addEventListener === 'function') {
+        compactHero.addEventListener('change', syncHeroBreakpoint);
+    } else if (typeof compactHero.addListener === 'function') {
+        compactHero.addListener(syncHeroBreakpoint);
+    }
+
+    syncHeroBreakpoint();
+    showSlide(isCompactHero() ? wrapIndex(-1, 1) : 0);
     startSlideshow();
 };
 
@@ -1452,8 +1504,7 @@ const initPageState = () => {
     updateActiveNavLink();
     
     if (DOM.navMenu && DOM.navToggle) {
-        DOM.navMenu.classList.remove('active');
-        DOM.navToggle.classList.remove('active');
+        closeMobileNav();
     }
 };
 
@@ -1511,88 +1562,6 @@ if (DOM.navbar) {
 }
 
 window.addEventListener('scroll', updateActiveNavLink);
-
-// ============================================================================
-// PLATFORM ARCHITECTURE — sticky scroll-linked diagram
-// ============================================================================
-
-/**
- * Keep the architecture diagram aligned with the card stack while scrolling.
- * Starts with the first card, ends with the last, and stays inside the section track.
- * Uses rAF + translate3d (CSS sticky is unreliable with body overflow-x: hidden).
- */
-const initArchitectureStickyScroll = () => {
-    const section = document.getElementById('architecture');
-    const track = section?.querySelector('.platform-architecture');
-    const visual = section?.querySelector('.platform-architecture-visual');
-    const layers = section?.querySelector('.platform-arch-layers');
-
-    if (!section || !track || !visual || !layers) return;
-
-    const desktopQuery = window.matchMedia('(min-width: 1025px)');
-    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let frameId = 0;
-    let lastY = -1;
-
-    const resetVisual = () => {
-        lastY = -1;
-        visual.style.transform = 'translate3d(0, 0, 0)';
-    };
-
-    const update = () => {
-        frameId = 0;
-
-        if (!desktopQuery.matches) {
-            resetVisual();
-            return;
-        }
-
-        const navbarHeight = DOM.navbar ? DOM.navbar.offsetHeight : 70;
-        const stickyOffset = navbarHeight + 16;
-        const trackRect = track.getBoundingClientRect();
-        const trackHeight = track.offsetHeight;
-        const visualHeight = visual.offsetHeight;
-        const maxTravel = Math.max(0, trackHeight - visualHeight);
-
-        if (maxTravel === 0) {
-            resetVisual();
-            return;
-        }
-
-        // Progress while the track scrolls past the sticky anchor under the navbar
-        let nextY = stickyOffset - trackRect.top;
-        nextY = Math.max(0, Math.min(maxTravel, nextY));
-
-        // Skip redundant writes to avoid layout thrash / jitter
-        if (Math.abs(nextY - lastY) < 0.25) return;
-        lastY = nextY;
-
-        visual.style.transform = `translate3d(0, ${nextY}px, 0)`;
-    };
-
-    const requestUpdate = () => {
-        if (frameId) return;
-        frameId = window.requestAnimationFrame(update);
-    };
-
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-    desktopQuery.addEventListener('change', requestUpdate);
-
-    // Recalculate after images load (diagram height affects max travel)
-    visual.querySelectorAll('img').forEach((img) => {
-        if (img.complete) return;
-        img.addEventListener('load', requestUpdate, { once: true });
-    });
-
-    // Initial position
-    requestUpdate();
-
-    // Reduced motion still keeps positional sync (not decorative animation)
-    reduceMotionQuery.addEventListener('change', requestUpdate);
-};
-
-initArchitectureStickyScroll();
 
 // ============================================================================
 // PLATFORM ENGINES — sticky layer nav active state
@@ -1667,14 +1636,58 @@ const initPlatformEnginesNav = () => {
         });
     };
 
+    const getEngineScrollOffset = () => {
+        const headerH = DOM.navbar ? DOM.navbar.offsetHeight : 70;
+        const slotH = slot.classList.contains('is-pinned')
+            ? slot.offsetHeight
+            : Math.max(nav.offsetHeight + 36, 64);
+        return headerH + slotH + 16;
+    };
+
+    const scrollToEngineTarget = (id) => {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        setActive(id);
+        const top = window.scrollY + target.getBoundingClientRect().top - getEngineScrollOffset();
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+
+        const settle = () => {
+            pinNav();
+            const desired = getEngineScrollOffset();
+            const delta = target.getBoundingClientRect().top - desired;
+            if (Math.abs(delta) > 2) {
+                window.scrollBy({ top: delta, behavior: 'auto' });
+            }
+            setActive(id);
+        };
+
+        if ('onscrollend' in window) {
+            window.addEventListener('scrollend', settle, { once: true });
+        }
+        setTimeout(settle, 420);
+    };
+
     window.addEventListener('scroll', requestPin, { passive: true });
     window.addEventListener('resize', requestPin);
-    links.forEach((link) => {
-        link.addEventListener('click', () => {
-            const id = (link.getAttribute('href') || '').slice(1);
-            if (id) setActive(id);
-        });
+
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
+        const href = (anchor.getAttribute('href') || '').trim();
+        if (!href.startsWith('#engine-layer-') && href !== '#engines') return;
+        const id = href.slice(1);
+        if (!document.getElementById(id)) return;
+        e.preventDefault();
+        closeMobileNav();
+        if (id === 'engines') {
+            const top = window.scrollY + section.getBoundingClientRect().top - (DOM.navbar ? DOM.navbar.offsetHeight : 70) - 8;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            return;
+        }
+        scrollToEngineTarget(id);
     });
+
     pinNav();
 };
 
