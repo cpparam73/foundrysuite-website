@@ -16,6 +16,15 @@
     --grid-gap: clamp(0.75rem, 1.2vw, 1.5rem);
     --touch-min: 44px;
 
+    /* Type — one stack, one scale */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Outfit', 'Inter', sans-serif;
+    --text-body: 1rem;
+    --text-kicker: 0.75rem;
+    --text-subhead: 1.25rem;
+    --text-heading: clamp(1.625rem, 1.2rem + 1.8vw, 2.75rem);
+    --text-hero: clamp(1.75rem, 1.15rem + 2.4vw, 3.65rem);
+
     /* Primary Colors */
     --primary-color: #14b8a6;
     --primary-dark: #0d9488;
@@ -84,7 +93,8 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: clip;
@@ -97,6 +107,10 @@ body {
     /* Ensure content is visible immediately */
     visibility: visible;
     opacity: 1;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
 }
 
 img,
@@ -3495,7 +3509,7 @@ body.nav-open {
 .contact .section-subtitle {
     text-align: left !important;
     margin: 0.0625rem 0 0.5rem 0;
-    font-size: 0.875rem;
+    font-size: 1rem;
     display: block;
     width: 100%;
     max-width: none;
@@ -3531,7 +3545,7 @@ body.nav-open {
 }
 
 .contact-next-title {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
@@ -3553,7 +3567,7 @@ body.nav-open {
     align-items: flex-start;
     gap: 0.65rem;
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.5;
 }
 
@@ -3565,7 +3579,7 @@ body.nav-open {
     border-radius: 999px;
     background: var(--gradient-1);
     color: #fff;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -3600,7 +3614,7 @@ body.nav-open {
 }
 
 .contact-item h3 {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.125rem;
     color: var(--text-primary);
@@ -3609,7 +3623,7 @@ body.nav-open {
 .contact-item p {
     color: var(--text-secondary);
     line-height: 1.4;
-    font-size: 0.8125rem;
+    font-size: 1rem;
     overflow-wrap: anywhere;
     word-break: break-word;
 }
@@ -3634,7 +3648,7 @@ body.nav-open {
 }
 
 .contact-description-field .form-label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-primary);
 }
@@ -3661,7 +3675,7 @@ body.nav-open {
 .contact-form .btn {
     margin-top: 0.25rem;
     padding: 0.75rem 2rem;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
 }
@@ -3710,11 +3724,22 @@ body.nav-open {
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
 }
 
-.form-label {
-    font-size: 0.875rem;
+.contact .form-label {
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: 0;
+}
+
+.contact .form-group input,
+.contact .form-group textarea,
+.contact .form-group select,
+.contact #captcha,
+.contact #captchaAnswer,
+.contact .phone-number,
+.contact .phone-code-display,
+.contact .error-message {
+    font-size: 1rem;
 }
 
 .required {
@@ -6505,4 +6530,147 @@ body.nav-open {
     .why-path {
         grid-template-columns: 1fr;
     }
+}
+
+/* —— Site-wide type scale ——
+   Body copy, cards, nav, and forms share --text-body.
+   Section titles share --text-heading. Page heroes keep --text-hero.
+   Device-mockup chrome is left alone. */
+.hero-title,
+.platform-hero-title {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+}
+
+.section-title,
+.how-we-work .section-title,
+.who-benefits .section-title,
+.platform-section-title,
+.platform-final-cta h2,
+.footer-section h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-heading);
+}
+
+.subsection-title,
+.success-title {
+    font-family: var(--font-display);
+    font-size: var(--text-subhead);
+}
+
+.section-subtitle,
+.hero-subtitle,
+.products .section-subtitle,
+.solutions .section-subtitle,
+.services .section-subtitle,
+.how-we-work .section-subtitle,
+.who-benefits .section-subtitle,
+.why-foundrysuite .section-subtitle,
+.contact .section-subtitle,
+.platform-hero-subtitle,
+.platform-section-subtitle,
+.subsection-subtitle,
+.platform-final-cta p,
+.hero .btn,
+.btn,
+.nav-link,
+.nav-login,
+.nav-cta,
+.product-title,
+.product-card-platform .product-title,
+.product-description,
+.product-link,
+.solution-title,
+.solution-description,
+.service-title,
+.service-list li,
+.service-micro-line,
+.service-cta,
+.process-step-title,
+.process-step-text,
+.benefit-pill,
+.about-text p,
+.mission-title,
+.mission-text,
+.value-title,
+.value-description,
+.why-foundrysuite-highlights li,
+.why-foundrysuite-link,
+.why-hero-panel .why-foundrysuite-highlights li,
+.why-reason-copy h3,
+.why-reason-copy p,
+.why-path-step h3,
+.why-path-step p,
+.why-compare-grid .platform-overview-card h3,
+.why-compare-grid .platform-overview-card p,
+.platform-overview-card h3,
+.platform-overview-card p,
+.platform-overview-pillar-label,
+.platform-overview-pillar p,
+.platform-hero-points li,
+.platform-hero-layer-name,
+.platform-hero-layer-meta,
+.platform-card h3,
+.platform-list-card h3,
+.platform-ai-card h3,
+.platform-benefit h3,
+.platform-card p,
+.platform-list-card p,
+.platform-ai-card p,
+.platform-benefit p,
+.platform-card-grid--compact .platform-card h3,
+.platform-card-grid--compact .platform-list-card h3,
+.platform-card-grid--compact .platform-card p,
+.platform-card-grid--compact .platform-list-card p,
+.platform-engine-card h3,
+.platform-engine-card .platform-engine-feature,
+.platform-engine-layer-title,
+.platform-engine-layer-subtitle,
+.platform-engines-nav-item,
+.platform-deploy-lead,
+.platform-deploy-group-label,
+.platform-deploy-target-name,
+.platform-deploy-hybrid-note,
+.platform-deploy-highlights li,
+.platform-faq-item summary,
+.platform-faq-item p,
+.contact-lead,
+.contact-next-title,
+.contact-next-list li,
+.contact-item h3,
+.contact-item p,
+.contact .form-label,
+.contact-description-field .form-label,
+.contact .form-group input,
+.contact .form-group textarea,
+.contact .form-group select,
+.contact #captcha,
+.contact #captchaAnswer,
+.contact-form .btn,
+.contact .error-message,
+.contact .phone-number,
+.contact .phone-code-display,
+.success-message p,
+.footer-section h4,
+.footer-section p,
+.footer-section ul li a,
+.footer-bottom {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+}
+
+.platform-eyebrow,
+.platform-hero-layers-label,
+.platform-hero-layer-index,
+.platform-hero-layer-tag,
+.platform-badge,
+.why-compare-kicker,
+.why-hero-panel-label,
+.why-reason-index,
+.platform-engine-index,
+.platform-engine-layer-tag,
+.platform-engine-layer-range,
+.platform-deploy-target-code,
+.contact-next-list li::before {
+    font-size: var(--text-kicker);
 }
