@@ -8,7 +8,7 @@ Security guidance for server/CDN headers lives in [`docs/SECURITY.md`](../docs/S
 
 ## Reporting a vulnerability
 
-Please email **enquiry@foundrysuite.com** with:
+Please email **parameswaran.cp@foundrysuite.com** with:
 
 - A short description of the issue
 - Steps to reproduce
