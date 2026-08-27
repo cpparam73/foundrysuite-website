@@ -6155,6 +6155,16 @@ body.nav-open {
     margin-bottom: 0;
 }
 
+@media (min-width: 969px) {
+    .platform-page .platform-final-cta-inner {
+        max-width: none;
+    }
+
+    .platform-page .platform-final-cta h2 {
+        white-space: nowrap;
+    }
+}
+
 @media (max-width: 1024px) {
     .platform-hero,
     .platform-section,
