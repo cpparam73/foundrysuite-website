@@ -6533,11 +6533,12 @@ body.nav-open {
 }
 
 /* —— Site-wide type scale ——
-   Body copy, cards, nav, and forms share --text-body.
-   Section titles share --text-heading. Page heroes keep --text-hero.
-   Device-mockup chrome is left alone. */
+   Inter + --text-body for reading text.
+   Outfit + --text-heading / --text-hero / --text-subhead for titles.
+   Kickers stay --text-kicker. Device-mockup chrome is left alone. */
 .hero-title,
-.platform-hero-title {
+.platform-hero-title,
+.platform-engines-count {
     font-family: var(--font-display);
     font-size: var(--text-hero);
 }
@@ -6546,6 +6547,7 @@ body.nav-open {
 .how-we-work .section-title,
 .who-benefits .section-title,
 .platform-section-title,
+.platform-engines-intro-copy .platform-section-title,
 .platform-final-cta h2,
 .footer-section h3 {
     font-family: var(--font-display);
@@ -6553,9 +6555,38 @@ body.nav-open {
 }
 
 .subsection-title,
-.success-title {
+.success-title,
+.platform-engine-layer-title {
     font-family: var(--font-display);
     font-size: var(--text-subhead);
+}
+
+.product-title,
+.product-card-platform .product-title,
+.solution-title,
+.service-title,
+.process-step-title,
+.mission-title,
+.value-title,
+.contact-next-title,
+.contact-item h3,
+.why-reason-copy h3,
+.why-path-step h3,
+.why-compare-grid .platform-overview-card h3,
+.platform-overview-card h3,
+.platform-overview-pillar-label,
+.platform-hero-layer-name,
+.platform-card h3,
+.platform-list-card h3,
+.platform-ai-card h3,
+.platform-benefit h3,
+.platform-card-grid--compact .platform-card h3,
+.platform-card-grid--compact .platform-list-card h3,
+.platform-engine-card h3,
+.platform-faq-item summary,
+.footer-section h4 {
+    font-family: var(--font-display);
+    font-size: var(--text-body);
 }
 
 .section-subtitle,
@@ -6569,75 +6600,52 @@ body.nav-open {
 .contact .section-subtitle,
 .platform-hero-subtitle,
 .platform-section-subtitle,
+.platform-engines-intro-copy .platform-section-subtitle,
 .subsection-subtitle,
 .platform-final-cta p,
+.platform-engine-layer-subtitle,
 .hero .btn,
 .btn,
 .nav-link,
 .nav-login,
 .nav-cta,
-.product-title,
-.product-card-platform .product-title,
 .product-description,
 .product-link,
-.solution-title,
 .solution-description,
-.service-title,
 .service-list li,
 .service-micro-line,
 .service-cta,
-.process-step-title,
 .process-step-text,
 .benefit-pill,
 .about-text p,
-.mission-title,
 .mission-text,
-.value-title,
 .value-description,
 .why-foundrysuite-highlights li,
 .why-foundrysuite-link,
 .why-hero-panel .why-foundrysuite-highlights li,
-.why-reason-copy h3,
 .why-reason-copy p,
-.why-path-step h3,
 .why-path-step p,
-.why-compare-grid .platform-overview-card h3,
 .why-compare-grid .platform-overview-card p,
-.platform-overview-card h3,
 .platform-overview-card p,
-.platform-overview-pillar-label,
 .platform-overview-pillar p,
 .platform-hero-points li,
-.platform-hero-layer-name,
 .platform-hero-layer-meta,
-.platform-card h3,
-.platform-list-card h3,
-.platform-ai-card h3,
-.platform-benefit h3,
 .platform-card p,
 .platform-list-card p,
 .platform-ai-card p,
 .platform-benefit p,
-.platform-card-grid--compact .platform-card h3,
-.platform-card-grid--compact .platform-list-card h3,
 .platform-card-grid--compact .platform-card p,
 .platform-card-grid--compact .platform-list-card p,
-.platform-engine-card h3,
 .platform-engine-card .platform-engine-feature,
-.platform-engine-layer-title,
-.platform-engine-layer-subtitle,
 .platform-engines-nav-item,
 .platform-deploy-lead,
 .platform-deploy-group-label,
 .platform-deploy-target-name,
 .platform-deploy-hybrid-note,
 .platform-deploy-highlights li,
-.platform-faq-item summary,
 .platform-faq-item p,
 .contact-lead,
-.contact-next-title,
 .contact-next-list li,
-.contact-item h3,
 .contact-item p,
 .contact .form-label,
 .contact-description-field .form-label,
@@ -6651,7 +6659,6 @@ body.nav-open {
 .contact .phone-number,
 .contact .phone-code-display,
 .success-message p,
-.footer-section h4,
 .footer-section p,
 .footer-section ul li a,
 .footer-bottom {
@@ -6672,5 +6679,6 @@ body.nav-open {
 .platform-engine-layer-range,
 .platform-deploy-target-code,
 .contact-next-list li::before {
+    font-family: var(--font-display);
     font-size: var(--text-kicker);
 }
