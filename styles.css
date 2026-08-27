@@ -5109,6 +5109,7 @@ body.nav-open {
     text-align: left;
     margin-left: 0;
     margin-right: 0;
+    max-width: none;
 }
 
 .platform-section-title {
@@ -6417,6 +6418,12 @@ body.nav-open {
     gap: 0.9rem;
 }
 
+@media (min-width: 969px) {
+    #why-paths .platform-section-title {
+        white-space: nowrap;
+    }
+}
+
 .why-compare-kicker {
     font-size: 0.72rem;
     font-weight: 700;
@@ -6495,19 +6502,10 @@ body.nav-open {
     padding: 1.15rem 1.15rem 1.2rem;
 }
 
-.why-path-index {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 999px;
+.why-path-step .why-reason-index {
+    display: block;
     margin-bottom: 0.7rem;
-    font-family: 'Outfit', 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, #F59E0B, #3B82F6);
+    padding-top: 0;
 }
 
 .why-path-step h3 {
