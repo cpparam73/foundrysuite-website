@@ -5732,18 +5732,26 @@ body.nav-open {
 }
 
 .platform-engines-intro {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.65rem 1.1rem;
-    align-items: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
     margin-bottom: 0.75rem;
 }
 
+.platform-engines-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin: 0;
+    text-align: left;
+}
+
 .platform-engines-count {
-    font-family: 'Outfit', 'Inter', sans-serif;
-    font-size: clamp(3.25rem, 8vw, 5rem);
+    font-family: var(--font-display);
+    font-size: 1em;
     font-weight: 800;
-    line-height: 0.85;
+    line-height: 1;
     letter-spacing: -0.06em;
     background: linear-gradient(145deg, #F59E0B 10%, #3B82F6 55%, #0ea5e9 100%);
     -webkit-background-clip: text;
@@ -5752,18 +5760,11 @@ body.nav-open {
     user-select: none;
 }
 
-.platform-engines-intro-copy .platform-section-title {
-    margin-bottom: 0.25rem;
-    text-align: left;
-    font-size: clamp(1.65rem, 3vw, 2.15rem);
-}
-
-.platform-engines-intro-copy .platform-section-subtitle {
+.platform-engines-intro .platform-section-subtitle {
     text-align: left;
     max-width: none;
-    font-size: 0.9rem;
+    margin: 0;
     line-height: 1.4;
-    white-space: nowrap;
 }
 
 .platform-engines-nav-slot {
@@ -6229,17 +6230,11 @@ body.nav-open {
     }
 
     .platform-engines-intro {
-        grid-template-columns: 1fr;
         gap: 0.25rem;
         text-align: left;
     }
 
-    .platform-engines-count {
-        font-size: clamp(2.75rem, 16vw, 4rem);
-        line-height: 0.9;
-    }
-
-    .platform-engines-intro-copy .platform-section-subtitle {
+    .platform-engines-intro .platform-section-subtitle {
         white-space: normal;
     }
 
@@ -6535,8 +6530,7 @@ body.nav-open {
    Outfit + --text-heading / --text-hero / --text-subhead for titles.
    Kickers stay --text-kicker. Device-mockup chrome is left alone. */
 .hero-title,
-.platform-hero-title,
-.platform-engines-count {
+.platform-hero-title {
     font-family: var(--font-display);
     font-size: var(--text-hero);
 }
@@ -6545,7 +6539,7 @@ body.nav-open {
 .how-we-work .section-title,
 .who-benefits .section-title,
 .platform-section-title,
-.platform-engines-intro-copy .platform-section-title,
+.platform-engines-heading,
 .platform-final-cta h2,
 .footer-section h3 {
     font-family: var(--font-display);
@@ -6598,7 +6592,7 @@ body.nav-open {
 .contact .section-subtitle,
 .platform-hero-subtitle,
 .platform-section-subtitle,
-.platform-engines-intro-copy .platform-section-subtitle,
+.platform-engines-intro .platform-section-subtitle,
 .subsection-subtitle,
 .platform-final-cta p,
 .platform-engine-layer-subtitle,
