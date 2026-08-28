@@ -46,16 +46,9 @@
         overlayImageSelectors: [
             '.logo-img',
             '.footer-logo',
-            '.hero-dashboard-img img',
-            '.hero-devices-wrapper img',
             '.solution-slideshow img',
-            '.slideshow-container img',
             '.about-image img',
             '.about-image',
-            '.platform-orbit-img',
-            '.platform-orbit-frame img',
-            '.architecture-diagram img',
-            '.arch-diagram img',
             '.login-brand-orbit-img',
             '.login-brand-logo-img',
             '.product-card img',
@@ -67,9 +60,7 @@
         ],
         /** Containers that may use CSS background-image and need a shield */
         backgroundHostSelectors: [
-            '.hero-dashboard-img',
             '.about-image',
-            '.platform-orbit-frame',
             '.login-brand-orbit',
             '.login-brand-panel',
             '[data-cp-bg-protect]'

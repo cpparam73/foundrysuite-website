@@ -79,12 +79,10 @@ const DOM = {
     relationship: document.getElementById('relationship'),
     
     // Slideshow
-    slides: document.querySelectorAll('.solution-slide'),
     indicators: document.querySelectorAll('.slide-indicator'),
     prevBtn: document.querySelector('.prev-btn'),
     nextBtn: document.querySelector('.next-btn'),
     slideshow: document.querySelector('.solution-slideshow'),
-    mobileScreens: document.querySelectorAll('.mobile-screen-view'),
     
     // Other
     contactItems: document.querySelectorAll('.contact-item'),
@@ -1355,7 +1353,7 @@ const initSolutionSlideshow = () => {
         return style.display !== 'none' && style.visibility !== 'hidden';
     };
 
-    // Original (real) slides only — skip CSS-hidden seasonal slides
+    // Original slides only (skip any CSS-hidden slides)
     const originals = Array.from(track.querySelectorAll('.solution-slide')).filter(isVisibleSlide);
     if (originals.length === 0) return;
 
