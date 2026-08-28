@@ -37,10 +37,10 @@
     <meta http-equiv="X-Permitted-Cross-Domain-Policies" content="none">
 
     <link rel="canonical" href="https://www.foundrysuite.com">
-    <link rel="icon" href="assets/images/Icons/favicon-light.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/Icons/favicon-32x32-light.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Icons/favicon-16x16-light.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Icons/apple-touch-icon-light.png">
+    <link rel="icon" href="assets/images/Icons/favicon-light.ico?v=nobg1" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/Icons/favicon-32x32-light.png?v=nobg1">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Icons/favicon-16x16-light.png?v=nobg1">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Icons/apple-touch-icon-light.png?v=nobg1">
     <script src="assets/js/core/theme-init.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,281 +118,149 @@
             <span class="hero-orb hero-orb--suite"></span>
             <span class="hero-grid"></span>
         </div>
-        <div class="container">
+        <div class="container hero-copy">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Your business.<br>
-                    Your modules.<br>
+                    Your business. Your modules.<br>
                     One platform.
                 </h1>
-                <p class="hero-subtitle">Run your business on one platform — add the modules you need, when you need them.</p>
+                <p class="hero-subtitle">One platform — add the modules you need, when you need them.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary" data-scroll-to="contact">Request a Demo</a>
                     <a href="#products" class="btn btn-secondary" data-scroll-to="products">Explore FoundrySuite</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-devices-wrapper">
-                    <div class="hero-desktop-container">
-                        <div class="solution-slideshow">
-                            <div class="slideshow-container">
-                                <!-- Slide 1: FoundrySuite Orbit -->
-                                <div class="solution-slide active" data-solution="orbit">
-                                    <img src="assets/images/Architecture/foundrysuite-orbit-light.png" sizes="(max-width: 968px) 92vw, min(600px, 42vw)" width="1536" height="1024" alt="FoundrySuite — modular platform capabilities and business outcomes" class="solution-slide-img solution-orbit-img solution-orbit-img--light" fetchpriority="high" decoding="async">
-                                    <img src="assets/images/Architecture/foundrysuite-orbit-dark.png" sizes="(max-width: 968px) 92vw, min(600px, 42vw)" width="1536" height="1024" alt="FoundrySuite — modular platform capabilities and business outcomes" class="solution-slide-img solution-orbit-img solution-orbit-img--dark" loading="lazy" decoding="async">
-                                </div>
+        </div>
+        <div class="hero-visual" aria-roledescription="carousel" aria-label="FoundrySuite product gallery">
+            <div class="solution-slideshow">
+                <div class="slideshow-viewport">
+                    <div class="slideshow-track">
+                        <!-- Slide 1: FoundrySuite Orbit -->
+                        <div class="solution-slide active" data-solution="orbit">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Architecture/hd/foundrysuite-orbit-light.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Architecture/foundrysuite-orbit-light.png" width="2048" height="1365" alt="FoundrySuite — modular platform capabilities and business outcomes" class="solution-slide-img solution-orbit-img solution-orbit-img--light" fetchpriority="high" decoding="async">
+                            </picture>
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Architecture/hd/foundrysuite-orbit-dark.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Architecture/foundrysuite-orbit-dark.png" width="2048" height="1365" alt="FoundrySuite — modular platform capabilities and business outcomes" class="solution-slide-img solution-orbit-img solution-orbit-img--dark" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
 
-                                <!-- Slide 2: Default Dashboard -->
-                                <div class="solution-slide" data-solution="dashboard">
-                                    <img src="assets/images/Branding/bid-hd.svg" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" fetchpriority="high" decoding="async">
-                                </div>
+                        <!-- Slide 2: Default Dashboard -->
+                        <div class="solution-slide" data-solution="dashboard">
+                            <img src="assets/images/Branding/bid-hd.svg" width="1920" height="1080" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" fetchpriority="high" decoding="async">
+                        </div>
 
-                                <!-- Slide 3: Foundry Manufacturing -->
-                                <div class="solution-slide" data-solution="manufacturing">
-                                    <img src="assets/images/Products/foundry-manufacturing.png" alt="Foundry Manufacturing - Industrial Manufacturing enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry Manufacturing</h3>
-                                            <p>Industrial Manufacturing enterprises</p>
-                                        </div>
-                                    </div>
+                        <!-- Slide 3: Foundry Manufacturing -->
+                        <div class="solution-slide" data-solution="manufacturing">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-manufacturing.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-manufacturing.png" width="2048" height="1153" alt="Foundry Manufacturing - Industrial Manufacturing enterprises" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry Manufacturing</h3>
+                                    <p>Industrial Manufacturing enterprises</p>
                                 </div>
-                                
-                                <!-- Slide 4: Foundry Build - Construction -->
-                                <div class="solution-slide" data-solution="build">
-                                    <img src="assets/images/Products/foundry-build.png" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry Build</h3>
-                                            <p>The Integrated ERP for Civil & Commercial Construction</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Slide 5: Foundry Campus - Education -->
-                                <div class="solution-slide" data-solution="campus">
-                                    <img src="assets/images/Products/foundry-campus.png" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry Campus</h3>
-                                            <p>Education & Institutions ERP</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Slide 6: Foundry Health - Healthcare -->
-                                <div class="solution-slide" data-solution="health">
-                                    <img src="assets/images/Products/foundry-health.png" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry Health</h3>
-                                            <p>Unified ERP Platform for Healthcare & Life Sciences Enterprises</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Slide 7: Foundry IT - IT Services -->
-                                <div class="solution-slide" data-solution="it">
-                                    <img src="assets/images/Products/foundry-it.png" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry IT</h3>
-                                            <p>Unified ERP Platform for IT & Digital Services Enterprises</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Slide 8: Foundry Agri - Agriculture -->
-                                <div class="solution-slide" data-solution="agri">
-                                    <img src="assets/images/Products/foundry-agri.png" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
-                                    <div class="solution-slide-placeholder is-hidden">
-                                        <div class="placeholder-content">
-                                            <h3>Foundry Agri</h3>
-                                            <p>Agriculture & Agri-Projects ERP</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slideshow Navigation -->
-                            <div class="slideshow-nav">
-                                <button class="slide-nav-btn prev-btn" aria-label="Previous slide">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="15 18 9 12 15 6"></polyline>
-                                    </svg>
-                                </button>
-                                <div class="slide-indicators">
-                                    <button class="slide-indicator active" data-slide="0" data-label="FoundrySuite" aria-label="FoundrySuite" title="FoundrySuite"></button>
-                                    <button class="slide-indicator" data-slide="1" data-label="Dashboard" aria-label="Dashboard" title="Dashboard"></button>
-                                    <button class="slide-indicator" data-slide="2" data-label="Manufacturing" aria-label="Manufacturing" title="Manufacturing"></button>
-                                    <button class="slide-indicator" data-slide="3" data-label="Build" aria-label="Build" title="Build"></button>
-                                    <button class="slide-indicator" data-slide="4" data-label="Campus" aria-label="Campus" title="Campus"></button>
-                                    <button class="slide-indicator" data-slide="5" data-label="Health" aria-label="Health" title="Health"></button>
-                                    <button class="slide-indicator" data-slide="6" data-label="IT" aria-label="IT" title="IT"></button>
-                                    <button class="slide-indicator" data-slide="7" data-label="Agri" aria-label="Agri" title="Agri"></button>
-                                </div>
-                                <button class="slide-nav-btn next-btn" aria-label="Next slide">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="hero-mobile-container">
-                        <div class="mobile-mockup">
-                            <div class="mobile-screen">
-                                <div class="mobile-header">
-                                    <div class="mobile-status-bar">
-                                        <span>9:41</span>
-                                        <div class="mobile-signal-icons">
-                                            <span>📶</span>
-                                            <span>📶</span>
-                                            <span>🔋</span>
-                                        </div>
-                                    </div>
-                                    <div class="mobile-nav">
-                                        <span class="mobile-logo-small"><span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></span>
-                                        <span class="mobile-menu">☰</span>
-                                    </div>
+
+                        <!-- Slide 4: Foundry Build - Construction -->
+                        <div class="solution-slide" data-solution="build">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-build.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-build.png" width="2048" height="1152" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry Build</h3>
+                                    <p>The Integrated ERP for Civil & Commercial Construction</p>
                                 </div>
-                                <div class="mobile-content">
-                                    <!-- Screen 1: Analytics Dashboard -->
-                                    <div class="mobile-screen-view active" data-screen="0">
-                                        <div class="mobile-kpi-card mobile-performance-card">
-                                            <div class="mobile-kpi-title">Monthly Performance</div>
-                                            <div class="mobile-performance-chart">
-                                                <div class="mobile-performance-bars">
-                                                    <div class="mobile-performance-bar mobile-bar-h-65">
-                                                        <span class="mobile-bar-value">Q1</span>
-                                                    </div>
-                                                    <div class="mobile-performance-bar mobile-bar-h-75">
-                                                        <span class="mobile-bar-value">Q2</span>
-                                                    </div>
-                                                    <div class="mobile-performance-bar mobile-bar-h-85">
-                                                        <span class="mobile-bar-value">Q3</span>
-                                                    </div>
-                                                    <div class="mobile-performance-bar mobile-bar-highlight mobile-bar-h-95">
-                                                        <span class="mobile-bar-value">Q4</span>
-                                                    </div>
-                                                    <div class="mobile-performance-bar mobile-bar-h-70">
-                                                        <span class="mobile-bar-value">YTD</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Revenue Trends</div>
-                                            <div class="mobile-line-chart">
-                                                <svg viewBox="0 0 100 50" class="mobile-chart-svg">
-                                                    <polyline points="5,40 15,35 25,30 35,25 45,20 55,18 65,15 75,12 85,10 95,8" 
-                                                             fill="none" stroke="var(--primary-color)" stroke-width="2"/>
-                                                    <polyline points="5,45 15,40 25,38 35,35 45,32 55,30 65,28 75,25 85,22 95,20" 
-                                                             fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="2,2"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Sales Pipeline</div>
-                                            <div class="mobile-pipeline">
-                                                <div class="mobile-pipeline-label">
-                                                    <span>68%</span>
-                                                    <span>Target: 75%</span>
-                                                </div>
-                                                <div class="mobile-pipeline-bar">
-                                                    <div class="mobile-pipeline-fill mobile-fill-68"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
 
-                                    <!-- Screen 2: Projects View -->
-                                    <div class="mobile-screen-view" data-screen="1">
-                                        <div class="mobile-kpi-card">
-                                            <div class="mobile-kpi-title">Active Projects</div>
-                                            <div class="mobile-kpi-value mobile-kpi-value-lg">24</div>
-                                            <div class="mobile-kpi-caption">+12% this month</div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Project Status</div>
-                                            <div class="mobile-project-list">
-                                                <div class="mobile-project-item">
-                                                    <div class="mobile-project-name">Project Alpha</div>
-                                                    <div class="mobile-project-progress">
-                                                        <div class="mobile-project-progress-bar mobile-fill-75"></div>
-                                                    </div>
-                                                    <div class="mobile-project-meta">75% Complete</div>
-                                                </div>
-                                                <div class="mobile-project-item">
-                                                    <div class="mobile-project-name">Project Beta</div>
-                                                    <div class="mobile-project-progress">
-                                                        <div class="mobile-project-progress-bar mobile-fill-45"></div>
-                                                    </div>
-                                                    <div class="mobile-project-meta">45% Complete</div>
-                                                </div>
-                                                <div class="mobile-project-item">
-                                                    <div class="mobile-project-name">Project Gamma</div>
-                                                    <div class="mobile-project-progress">
-                                                        <div class="mobile-project-progress-bar mobile-fill-90"></div>
-                                                    </div>
-                                                    <div class="mobile-project-meta">90% Complete</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Tasks Today</div>
-                                            <div class="mobile-task-count">8 Tasks</div>
-                                            <div class="mobile-kpi-caption">3 High Priority</div>
-                                        </div>
-                                    </div>
+                        <!-- Slide 5: Foundry Campus - Education -->
+                        <div class="solution-slide" data-solution="campus">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-campus.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-campus.png" width="2048" height="1152" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry Campus</h3>
+                                    <p>Education & Institutions ERP</p>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <!-- Screen 3: CRM View -->
-                                    <div class="mobile-screen-view" data-screen="2">
-                                        <div class="mobile-kpi-card">
-                                            <div class="mobile-kpi-title">Customers</div>
-                                            <div class="mobile-kpi-value mobile-kpi-value-lg">1,247</div>
-                                            <div class="mobile-kpi-caption">+23 new this week</div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Recent Activities</div>
-                                            <div class="mobile-activity-list">
-                                                <div class="mobile-activity-item">
-                                                    <div class="mobile-activity-icon">📞</div>
-                                                    <div class="mobile-activity-content">
-                                                        <div class="mobile-activity-title">Call with Acme Corp</div>
-                                                        <div class="mobile-activity-time">2 hours ago</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobile-activity-item">
-                                                    <div class="mobile-activity-icon">📧</div>
-                                                    <div class="mobile-activity-content">
-                                                        <div class="mobile-activity-title">Quote sent to TechCo</div>
-                                                        <div class="mobile-activity-time">5 hours ago</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobile-activity-item">
-                                                    <div class="mobile-activity-icon">✅</div>
-                                                    <div class="mobile-activity-content">
-                                                        <div class="mobile-activity-title">Deal closed: $45K</div>
-                                                        <div class="mobile-activity-time">Yesterday</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mobile-section">
-                                            <div class="mobile-section-title">Conversion Rate</div>
-                                            <div class="mobile-conversion-rate">32.5%</div>
-                                            <div class="mobile-kpi-caption">↑ 5.2% from last month</div>
-                                        </div>
-                                    </div>
+                        <!-- Slide 6: Foundry Health - Healthcare -->
+                        <div class="solution-slide" data-solution="health">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-health.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-health.png" width="2048" height="1152" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry Health</h3>
+                                    <p>Unified ERP Platform for Healthcare & Life Sciences Enterprises</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 7: Foundry IT - IT Services -->
+                        <div class="solution-slide" data-solution="it">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-it.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-it.png" width="2048" height="1152" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry IT</h3>
+                                    <p>Unified ERP Platform for IT & Digital Services Enterprises</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 8: Foundry Agri - Agriculture -->
+                        <div class="solution-slide" data-solution="agri">
+                            <picture class="solution-slide-picture">
+                                <source type="image/webp" srcset="assets/images/Products/hd/foundry-agri.webp" sizes="(max-width: 968px) 90vw, min(64rem, 72vw)">
+                                <img src="assets/images/Products/foundry-agri.png" width="2048" height="1152" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" decoding="async" data-fallback-sibling="true">
+                            </picture>
+                            <div class="solution-slide-placeholder is-hidden">
+                                <div class="placeholder-content">
+                                    <h3>Foundry Agri</h3>
+                                    <p>Agriculture & Agri-Projects ERP</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="slideshow-nav">
+                    <button class="slide-nav-btn prev-btn" aria-label="Previous slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="slide-indicators">
+                        <button class="slide-indicator active" data-slide="0" data-label="FoundrySuite" aria-label="FoundrySuite" title="FoundrySuite"></button>
+                        <button class="slide-indicator" data-slide="1" data-label="Dashboard" aria-label="Dashboard" title="Dashboard"></button>
+                        <button class="slide-indicator" data-slide="2" data-label="Manufacturing" aria-label="Manufacturing" title="Manufacturing"></button>
+                        <button class="slide-indicator" data-slide="3" data-label="Build" aria-label="Build" title="Build"></button>
+                        <button class="slide-indicator" data-slide="4" data-label="Campus" aria-label="Campus" title="Campus"></button>
+                        <button class="slide-indicator" data-slide="5" data-label="Health" aria-label="Health" title="Health"></button>
+                        <button class="slide-indicator" data-slide="6" data-label="IT" aria-label="IT" title="IT"></button>
+                        <button class="slide-indicator" data-slide="7" data-label="Agri" aria-label="Agri" title="Agri"></button>
+                    </div>
+                    <button class="slide-nav-btn next-btn" aria-label="Next slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </section>
-
     </section>
 
     <!-- Why FoundrySuite — continuation of the Hero narrative -->
@@ -670,7 +538,7 @@
                         </div>
                         <div class="solution-content">
                             <h3 class="solution-title">Foundry Manufacturing</h3>
-                            <p class="solution-description">Industrial manufacturing enterprises.</p>
+                            <p class="solution-description">Industrial manufacturing enterprises</p>
                         </div>
                     </div>
                     <div class="solution-card solution-card-build">
@@ -820,7 +688,7 @@
                             </div>
                             <div class="solution-content">
                                 <h3 class="solution-title">Manufacturing Pack</h3>
-                                <p class="solution-description">Planning, production, materials & capacity, scheduling, shop floor, quality, and inventory.</p>
+                                <p class="solution-description">Planning, production, materials & capacity, scheduling, shop floor, quality, and inventory</p>
                             </div>
                         </div>
                     </div>

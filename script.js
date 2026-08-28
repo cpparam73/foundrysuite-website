@@ -1346,64 +1346,142 @@ const initPlatformFaqAccordion = () => {
 // ============================================================================
 
 const initSolutionSlideshow = () => {
-    if (DOM.slides.length === 0) return;
-    
+    const track = document.querySelector('.slideshow-track');
+    const viewport = document.querySelector('.slideshow-viewport');
+    if (!track || !viewport) return;
+
+    const isVisibleSlide = (slide) => {
+        const style = window.getComputedStyle(slide);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+    };
+
+    // Original (real) slides only — skip CSS-hidden seasonal slides
+    const originals = Array.from(track.querySelectorAll('.solution-slide')).filter(isVisibleSlide);
+    if (originals.length === 0) return;
+
+    const slideCount = originals.length;
+    const indicators = Array.from(DOM.indicators || []).slice(0, slideCount);
+
+    // Mark originals, then clone a full set before + after so the strip loops
+    // Track layout: [clones] [originals] [clones] — peeks never show empty space
+    originals.forEach((slide, index) => {
+        slide.dataset.slideIndex = String(index);
+        slide.dataset.slideClone = '0';
+    });
+
+    const makeClone = (slide, index) => {
+        const clone = slide.cloneNode(true);
+        clone.classList.remove('active');
+        clone.dataset.slideIndex = String(index);
+        clone.dataset.slideClone = '1';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('[id]').forEach((node) => node.removeAttribute('id'));
+        return clone;
+    };
+
+    const headFrag = document.createDocumentFragment();
+    const tailFrag = document.createDocumentFragment();
+    originals.forEach((slide, index) => {
+        headFrag.appendChild(makeClone(slide, index));
+        tailFrag.appendChild(makeClone(slide, index));
+    });
+    track.insertBefore(headFrag, originals[0]);
+    track.appendChild(tailFrag);
+
+    const trackSlides = Array.from(track.querySelectorAll('.solution-slide')).filter(isVisibleSlide);
+    const realOffset = slideCount; // first original index in trackSlides
+    let trackIndex = realOffset;
     let currentSlide = 0;
     let slideInterval = null;
-    const compactHero = window.matchMedia('(max-width: 968px)');
-    const slideCount = DOM.slides.length;
-    const isOrbitSlide = (index) => DOM.slides[index]?.dataset.solution === 'orbit';
-    const isCompactHero = () => compactHero.matches;
-    const shouldSkipSlide = (index) => isCompactHero() && isOrbitSlide(index);
+    let isAnimating = false;
+    let normalizeTimer = null;
 
-    const wrapIndex = (from, step) => {
-        let index = from;
-        for (let i = 0; i < slideCount; i += 1) {
-            index = (index + step + slideCount) % slideCount;
-            if (!shouldSkipSlide(index)) return index;
-        }
-        return from;
+    const logicalFromTrack = (index) => ((index % slideCount) + slideCount) % slideCount;
+
+    const centeredOffset = (index) => {
+        const slide = trackSlides[index];
+        if (!slide || !viewport) return 0;
+        return slide.offsetLeft - (viewport.clientWidth - slide.offsetWidth) / 2;
     };
-    
-    const showSlide = (index) => {
-        try {
-            const next = shouldSkipSlide(index) ? wrapIndex(index, 1) : index;
-            DOM.slides.forEach(slide => slide.classList.remove('active'));
-            if (DOM.indicators) {
-                DOM.indicators.forEach(indicator => indicator.classList.remove('active'));
-            }
-            
-            if (DOM.slides[next]) DOM.slides[next].classList.add('active');
-            if (DOM.indicators && DOM.indicators[next]) DOM.indicators[next].classList.add('active');
-            
-            currentSlide = next;
-            
-            if (DOM.mobileScreens && DOM.mobileScreens.length > 0) {
-                const mobileScreenIndex = next % DOM.mobileScreens.length;
-                DOM.mobileScreens.forEach((screen, i) => {
-                    screen.classList.toggle('active', i === mobileScreenIndex);
-                });
-            }
-        } catch (e) {
-            // Silently handle errors
-        }
+
+    const positionTrack = (index) => {
+        if (!trackSlides[index]) return;
+        track.style.transform = `translate3d(${-centeredOffset(index)}px, 0, 0)`;
     };
-    
-    const nextSlide = () => showSlide(wrapIndex(currentSlide, 1));
-    const prevSlide = () => showSlide(wrapIndex(currentSlide, -1));
-    
+
+    const setActiveClasses = (logicalIndex, activeTrackIndex) => {
+        trackSlides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === activeTrackIndex);
+        });
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === logicalIndex);
+        });
+    };
+
+    const normalizeLoopPosition = () => {
+        if (normalizeTimer) {
+            window.clearTimeout(normalizeTimer);
+            normalizeTimer = null;
+        }
+        if (trackIndex >= realOffset + slideCount) {
+            goToTrackIndex(trackIndex - slideCount, { animate: false });
+        } else if (trackIndex < realOffset) {
+            goToTrackIndex(trackIndex + slideCount, { animate: false });
+        }
+        isAnimating = false;
+    };
+
+    const goToTrackIndex = (index, { animate = true } = {}) => {
+        if (!trackSlides[index]) return;
+        const logical = logicalFromTrack(index);
+        trackIndex = index;
+        currentSlide = logical;
+        setActiveClasses(logical, index);
+
+        if (!animate) {
+            track.style.transition = 'none';
+            positionTrack(index);
+            // Force reflow so the jump isn't animated
+            void track.offsetWidth;
+            track.style.transition = '';
+            return;
+        }
+
+        isAnimating = true;
+        if (normalizeTimer) window.clearTimeout(normalizeTimer);
+        positionTrack(index);
+        // Fallback when transitionend doesn't fire (reduced motion / interrupted)
+        normalizeTimer = window.setTimeout(normalizeLoopPosition, 750);
+    };
+
+    track.addEventListener('transitionend', (event) => {
+        if (event.target !== track) return;
+        if (event.propertyName && event.propertyName !== 'transform') return;
+        normalizeLoopPosition();
+    });
+
+    const showSlide = (logicalIndex) => {
+        const next = ((logicalIndex % slideCount) + slideCount) % slideCount;
+        goToTrackIndex(realOffset + next, { animate: true });
+    };
+
+    const nextSlide = () => goToTrackIndex(trackIndex + 1, { animate: true });
+    const prevSlide = () => goToTrackIndex(trackIndex - 1, { animate: true });
+
     const startSlideshow = () => {
         if (slideInterval) clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, SLIDESHOW_INTERVAL);
+        slideInterval = setInterval(() => {
+            if (!isAnimating) nextSlide();
+        }, SLIDESHOW_INTERVAL);
     };
-    
+
     const stopSlideshow = () => {
         if (slideInterval) {
             clearInterval(slideInterval);
             slideInterval = null;
         }
     };
-    
+
     if (DOM.nextBtn) {
         DOM.nextBtn.addEventListener('click', () => {
             stopSlideshow();
@@ -1411,7 +1489,7 @@ const initSolutionSlideshow = () => {
             startSlideshow();
         });
     }
-    
+
     if (DOM.prevBtn) {
         DOM.prevBtn.addEventListener('click', () => {
             stopSlideshow();
@@ -1419,16 +1497,15 @@ const initSolutionSlideshow = () => {
             startSlideshow();
         });
     }
-    
-    DOM.indicators.forEach((indicator, index) => {
+
+    indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
-            if (shouldSkipSlide(index)) return;
             stopSlideshow();
             showSlide(index);
             startSlideshow();
         });
     });
-    
+
     if (DOM.slideshow) {
         DOM.slideshow.addEventListener('mouseenter', stopSlideshow);
         DOM.slideshow.addEventListener('mouseleave', startSlideshow);
@@ -1440,25 +1517,67 @@ const initSolutionSlideshow = () => {
         });
     }
 
-    const syncHeroBreakpoint = () => {
-        DOM.indicators.forEach((indicator, index) => {
-            const skip = shouldSkipSlide(index);
-            indicator.toggleAttribute('hidden', skip);
-            indicator.setAttribute('aria-hidden', skip ? 'true' : 'false');
-            indicator.tabIndex = skip ? -1 : 0;
-        });
-        if (shouldSkipSlide(currentSlide)) {
-            showSlide(wrapIndex(currentSlide, 1));
-        }
+    // Touch / pointer swipe
+    let pointerStartX = null;
+    let pointerDeltaX = 0;
+
+    const onPointerDown = (event) => {
+        pointerStartX = event.clientX ?? event.touches?.[0]?.clientX ?? null;
+        pointerDeltaX = 0;
+        stopSlideshow();
+        track.style.transition = 'none';
     };
-    if (typeof compactHero.addEventListener === 'function') {
-        compactHero.addEventListener('change', syncHeroBreakpoint);
-    } else if (typeof compactHero.addListener === 'function') {
-        compactHero.addListener(syncHeroBreakpoint);
+
+    const onPointerMove = (event) => {
+        if (pointerStartX === null) return;
+        const x = event.clientX ?? event.touches?.[0]?.clientX;
+        if (typeof x !== 'number') return;
+        pointerDeltaX = x - pointerStartX;
+        track.style.transform = `translate3d(${-(centeredOffset(trackIndex) - pointerDeltaX)}px, 0, 0)`;
+    };
+
+    const onPointerUp = () => {
+        track.style.transition = '';
+        if (pointerStartX === null) return;
+        const threshold = Math.min(80, viewport.clientWidth * 0.12);
+        if (pointerDeltaX > threshold) prevSlide();
+        else if (pointerDeltaX < -threshold) nextSlide();
+        else goToTrackIndex(trackIndex, { animate: true });
+        pointerStartX = null;
+        pointerDeltaX = 0;
+        startSlideshow();
+    };
+
+    viewport.addEventListener('pointerdown', onPointerDown);
+    viewport.addEventListener('pointermove', onPointerMove);
+    viewport.addEventListener('pointerup', onPointerUp);
+    viewport.addEventListener('pointercancel', onPointerUp);
+    viewport.addEventListener('pointerleave', () => {
+        if (pointerStartX !== null) onPointerUp();
+    });
+
+    const recenter = () => positionTrack(trackIndex);
+    window.addEventListener('resize', recenter);
+
+    trackSlides.forEach((slide) => {
+        slide.querySelectorAll('img').forEach((img) => {
+            if (img.complete) return;
+            img.addEventListener('load', recenter, { once: true });
+        });
+    });
+
+    if (typeof ResizeObserver !== 'undefined') {
+        const layoutObserver = new ResizeObserver(recenter);
+        layoutObserver.observe(viewport);
+        trackSlides.forEach((slide) => layoutObserver.observe(slide));
     }
 
-    syncHeroBreakpoint();
-    showSlide(isCompactHero() ? wrapIndex(-1, 1) : 0);
+    // Start on the first real slide (with last-slide peek on the left)
+    goToTrackIndex(realOffset, { animate: false });
+    requestAnimationFrame(() => {
+        recenter();
+        requestAnimationFrame(recenter);
+    });
     startSlideshow();
 };
 
@@ -1470,7 +1589,11 @@ const initImageFallbacks = () => {
     document.querySelectorAll('img[data-fallback-sibling="true"]').forEach((img) => {
         img.addEventListener('error', () => {
             img.style.display = 'none';
-            const sibling = img.nextElementSibling;
+            const picture = img.closest('picture');
+            if (picture) {
+                picture.style.display = 'none';
+            }
+            const sibling = (picture && picture.nextElementSibling) || img.nextElementSibling;
             if (sibling) {
                 sibling.classList.remove('is-hidden');
                 sibling.style.display = 'flex';
