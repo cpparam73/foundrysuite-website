@@ -1435,6 +1435,8 @@ const initSolutionSlideshow = () => {
         trackIndex = index;
         currentSlide = logical;
         setActiveClasses(logical, index);
+        // Active/peek width swap is layout-based — measure after classes apply
+        void track.offsetWidth;
 
         if (!animate) {
             track.style.transition = 'none';

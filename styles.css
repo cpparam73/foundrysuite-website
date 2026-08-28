@@ -862,9 +862,11 @@ body.nav-open {
 
 /* Solution Slideshow — full-width horizontal carousel */
 .solution-slideshow {
-    --hero-slide-gap: clamp(0.45rem, 1vw, 0.85rem);
+    --hero-slide-gap: clamp(0.7rem, 1.4vw, 1.25rem);
     /* Center card width — leaves clear prev/next peeks on both sides */
     --hero-slide-width: min(76vw, 80rem);
+    /* Inactive peeks use real width (not scale) so rasters stay sharp */
+    --hero-slide-peek-scale: 0.7;
     position: relative;
     width: 100%;
     height: 100%;
@@ -882,11 +884,13 @@ body.nav-open {
     width: 100%;
     overflow: hidden;
     touch-action: pan-y pinch-zoom;
-    padding: 0;
+    /* Room for active-slide lift + outer brand ring / depth shadow */
+    padding: 0.7rem 0 1.15rem;
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .slideshow-track {
@@ -907,23 +911,34 @@ body.nav-open {
       Keep a true 16:9 frame on all screens:
       - tall tablet/mobile: cap height from max-width so cards don't go portrait
       - short desktop: fill available carousel height
+      Active uses full --hero-slide-width; peeks shrink via --slide-scale (width, not scale()).
     */
+    --slide-scale: var(--hero-slide-peek-scale);
     flex: 0 0 auto;
-    height: min(100%, calc(var(--hero-slide-width) * 9 / 16));
+    height: min(
+        calc(100% * var(--slide-scale)),
+        calc(var(--hero-slide-width) * var(--slide-scale) * 9 / 16)
+    );
     width: auto;
     aspect-ratio: 16 / 9;
-    max-width: var(--hero-slide-width);
+    max-width: calc(var(--hero-slide-width) * var(--slide-scale));
     min-height: 0;
-    opacity: 0.62;
+    opacity: 0.58;
     visibility: visible;
     /* No scale() — GPU rescale softens raster slides on retina */
-    transition: opacity 0.45s ease, box-shadow 0.45s ease;
+    transform: translate3d(0, 0, 0);
+    transition:
+        opacity 0.45s ease,
+        box-shadow 0.45s ease,
+        border-color 0.45s ease,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: auto;
     padding: 0;
-    overflow: hidden;
+    /* visible so brand ring / lift shadow are not clipped; media uses border-radius */
+    overflow: visible;
     box-sizing: border-box;
     border-radius: 1.1rem;
     background: #f1f5f9;
@@ -932,9 +947,17 @@ body.nav-open {
 }
 
 .solution-slide.active {
+    --slide-scale: 1;
     opacity: 1;
     z-index: 2;
-    box-shadow: 0 22px 56px rgba(15, 23, 42, 0.16);
+    /* Subtle lift — distinguish focus without scaling rasters */
+    transform: translate3d(0, -0.45rem, 0);
+    border-color: rgba(245, 158, 11, 0.72);
+    /* Logo orange ring + deeper depth so the active card reads as focused */
+    box-shadow:
+        0 0 0 2px rgba(245, 158, 11, 0.55),
+        0 0 0 8px rgba(245, 158, 11, 0.18),
+        0 34px 72px rgba(15, 23, 42, 0.28);
 }
 
 [data-theme="dark"] .solution-slide {
@@ -944,7 +967,11 @@ body.nav-open {
 }
 
 [data-theme="dark"] .solution-slide.active {
-    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.45);
+    border-color: rgba(251, 191, 36, 0.7);
+    box-shadow:
+        0 0 0 2px rgba(251, 191, 36, 0.55),
+        0 0 0 8px rgba(245, 158, 11, 0.22),
+        0 34px 72px rgba(0, 0, 0, 0.6);
 }
 
 .solution-slide-picture {
@@ -965,6 +992,8 @@ body.nav-open {
     object-fit: cover;
     object-position: center;
     display: block;
+    /* Clip image to card radius now that the slide shell is overflow:visible */
+    overflow: hidden;
     image-rendering: auto;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -998,6 +1027,7 @@ body.nav-open {
     height: 100%;
     background: var(--bg-primary);
     border-radius: inherit;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3946,13 +3976,14 @@ body.nav-open {
     .slideshow-track {
         height: auto;
         max-height: none;
-        align-items: stretch;
+        /* center — let peeks stay shorter than the active slide */
+        align-items: center;
     }
 
     .solution-slide {
         height: auto;
-        width: var(--hero-slide-width);
-        max-width: var(--hero-slide-width);
+        width: calc(var(--hero-slide-width) * var(--slide-scale));
+        max-width: calc(var(--hero-slide-width) * var(--slide-scale));
         aspect-ratio: 16 / 9;
     }
 
@@ -3973,7 +4004,7 @@ body.nav-open {
     }
 
     .solution-slideshow {
-        --hero-slide-gap: 0.5rem;
+        --hero-slide-gap: 0.85rem;
         --hero-slide-width: min(82vw, 36rem);
         gap: 0.25rem;
     }
