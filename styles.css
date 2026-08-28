@@ -16,12 +16,13 @@
     --grid-gap: clamp(0.75rem, 1.2vw, 1.5rem);
     --touch-min: 44px;
 
-    /* Type — one stack, one scale */
+    /* Type — one stack, one scale (responsive floors set after the role map) */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-display: 'Outfit', 'Inter', sans-serif;
-    --text-body: 1rem;
-    --text-kicker: 0.75rem;
-    --text-subhead: 1.25rem;
+    --text-body: 1rem;          /* 16px — primary UI / reading */
+    --text-small: 0.875rem;     /* 14px — card copy, captions */
+    --text-kicker: 0.75rem;     /* 12px — badges / indexes */
+    --text-subhead: 1.25rem;    /* 20px — subsection titles */
     --text-heading: clamp(1.625rem, 1.2rem + 1.8vw, 2.75rem);
     --text-hero: clamp(1.75rem, 1.15rem + 2.4vw, 3.65rem);
 
@@ -109,7 +110,7 @@ body {
     opacity: 1;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: var(--font-display);
 }
 
@@ -1155,7 +1156,7 @@ body.nav-open {
 
 /* Why FoundrySuite — second half of the Hero story (What → Why → Products) */
 .why-foundrysuite {
-    padding: 1.25rem 0 4.5rem;
+    padding: 1.25rem 0 1.75rem;
     position: relative;
 }
 
@@ -1262,7 +1263,7 @@ body.nav-open {
     border: none;
     border-radius: 0;
     padding: 0.15rem 0;
-    font-size: 0.9375rem;
+    font-size: var(--text-small);
     font-weight: 600;
     color: var(--text-primary);
     text-align: left;
@@ -1307,7 +1308,7 @@ body.nav-open {
 
 @media (max-width: 768px) {
     .why-foundrysuite {
-        padding: 1rem 0 3.5rem;
+        padding: 1rem 0 1.5rem;
     }
 
     .why-foundrysuite-highlights {
@@ -5806,12 +5807,12 @@ body.nav-open {
 }
 
 .why-hero-panel-label {
-    font-family: 'Outfit', 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    font-weight: 700;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin: 0 0 0.85rem;
 }
 
@@ -5820,7 +5821,7 @@ body.nav-open {
 }
 
 .why-hero-panel .why-foundrysuite-highlights li {
-    font-size: 0.95rem;
+    font-size: var(--text-small);
     font-weight: 600;
 }
 
@@ -5943,9 +5944,9 @@ body.nav-open {
 }
 
 /* —— Site-wide type scale ——
-   Inter + --text-body for reading text.
-   Outfit + --text-heading / --text-hero / --text-subhead for titles.
-   Kickers stay --text-kicker. Device-mockup chrome is left alone. */
+   Outfit for titles. Inter for reading / UI.
+   Sizes come only from --text-* tokens (responsive overrides below).
+   Device-mockup chrome is left alone. */
 .hero-title,
 .platform-hero-title {
     font-family: var(--font-display);
@@ -5958,6 +5959,7 @@ body.nav-open {
 .platform-section-title,
 .platform-engines-heading,
 .platform-final-cta h2,
+.services-cta-title,
 .footer-section h3 {
     font-family: var(--font-display);
     font-size: var(--text-heading);
@@ -6018,6 +6020,28 @@ body.nav-open {
 .nav-link,
 .nav-login,
 .nav-cta,
+.benefit-pill,
+.about-text p,
+.why-foundrysuite-link,
+.contact-lead,
+.contact-next-list li,
+.contact-item p,
+.contact .form-label,
+.contact-description-field .form-label,
+.contact .form-group input,
+.contact .form-group textarea,
+.contact .form-group select,
+.contact #captcha,
+.contact #captchaAnswer,
+.contact-form .btn,
+.contact .phone-number,
+.contact .phone-code-display,
+.footer-section ul li a {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+}
+
+/* Secondary reading — one step below body for hierarchy on phones */
 .product-description,
 .product-link,
 .solution-description,
@@ -6025,12 +6049,9 @@ body.nav-open {
 .service-micro-line,
 .service-cta,
 .process-step-text,
-.benefit-pill,
-.about-text p,
 .mission-text,
 .value-description,
 .why-foundrysuite-highlights li,
-.why-foundrysuite-link,
 .why-hero-panel .why-foundrysuite-highlights li,
 .why-reason-copy p,
 .why-path-step p,
@@ -6053,26 +6074,12 @@ body.nav-open {
 .platform-deploy-hybrid-note,
 .platform-deploy-highlights li,
 .platform-faq-item p,
-.contact-lead,
-.contact-next-list li,
-.contact-item p,
-.contact .form-label,
-.contact-description-field .form-label,
-.contact .form-group input,
-.contact .form-group textarea,
-.contact .form-group select,
-.contact #captcha,
-.contact #captchaAnswer,
-.contact-form .btn,
 .contact .error-message,
-.contact .phone-number,
-.contact .phone-code-display,
 .success-message p,
 .footer-section p,
-.footer-section ul li a,
 .footer-bottom {
     font-family: var(--font-sans);
-    font-size: var(--text-body);
+    font-size: var(--text-small);
 }
 
 .platform-eyebrow,
@@ -6081,7 +6088,6 @@ body.nav-open {
 .platform-hero-layer-tag,
 .platform-badge,
 .why-compare-kicker,
-.why-hero-panel-label,
 .why-reason-index,
 .platform-engine-index,
 .platform-engine-layer-tag,
@@ -6090,4 +6096,59 @@ body.nav-open {
 .contact-next-list li::before {
     font-family: var(--font-display);
     font-size: var(--text-kicker);
+}
+
+/* Stronger than the 14px bullets it introduces */
+.why-hero-panel-label {
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    font-weight: 700;
+}
+
+/*
+  Responsive type tokens — must follow the role map so mobile/tablet
+  sizes actually apply. Keep body at 16px for readability; tighten
+  display sizes and keep secondary copy at 14px.
+*/
+@media (max-width: 1024px) {
+    :root {
+        --text-hero: clamp(1.65rem, 1.35rem + 1.4vw, 2.4rem);
+        --text-heading: clamp(1.5rem, 1.25rem + 1.1vw, 2.1rem);
+        --text-subhead: 1.1875rem;
+        --text-body: 1rem;
+        --text-small: 0.875rem;
+        --text-kicker: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --text-hero: clamp(1.5rem, 1.3rem + 1.2vw, 1.85rem);
+        --text-heading: clamp(1.4rem, 1.2rem + 1vw, 1.75rem);
+        --text-subhead: 1.125rem;
+        --text-body: 1rem;
+        --text-small: 0.875rem;
+        --text-kicker: 0.75rem;
+    }
+}
+
+/* Short viewports / phone landscape — compact display, keep body readable */
+@media (max-height: 720px) {
+    :root {
+        --text-hero: clamp(1.4rem, 3.8vh, 1.85rem);
+        --text-heading: clamp(1.35rem, 3.4vh, 1.7rem);
+    }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+    :root {
+        --text-hero: clamp(1.35rem, 4vh, 1.65rem);
+        --text-heading: clamp(1.3rem, 3.6vh, 1.55rem);
+        --text-subhead: 1.0625rem;
+    }
+
+    .hero-subtitle,
+    .hero .btn {
+        font-size: var(--text-small);
+    }
 }
