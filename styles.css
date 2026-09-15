@@ -1024,6 +1024,58 @@ body.nav-open {
     background: #050816;
 }
 
+.intro-sound-toggle {
+    display: none;
+    position: absolute;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    z-index: 6;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: 999px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(15, 23, 42, 0.62);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.28);
+    pointer-events: auto;
+}
+
+.solution-slide.active .intro-sound-toggle {
+    display: flex;
+}
+
+.intro-sound-toggle:hover,
+.intro-sound-toggle:focus-visible {
+    background: rgba(15, 23, 42, 0.82);
+    outline: none;
+}
+
+.intro-sound-toggle:focus-visible {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(245, 158, 11, 0.9);
+}
+
+.intro-sound-icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    display: none;
+}
+
+.intro-sound-toggle .intro-sound-icon--off {
+    display: block;
+}
+
+.intro-sound-toggle.is-on .intro-sound-icon--off {
+    display: none;
+}
+
+.intro-sound-toggle.is-on .intro-sound-icon--on {
+    display: block;
+}
+
 /* Orbit art is taller than 16:9 — stretch to fill so nothing is cropped */
 .hero .solution-slide[data-solution="orbit"] .solution-orbit-img {
     object-fit: fill;

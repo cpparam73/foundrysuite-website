@@ -1399,12 +1399,26 @@ const initSolutionSlideshow = () => {
     let isAnimating = false;
     let normalizeTimer = null;
     let videoFallbackTimer = null;
+    let introSoundOn = false;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let onIntroComplete = () => {};
 
     const logicalFromTrack = (index) => ((index % slideCount) + slideCount) % slideCount;
 
     const getSlideVideo = (slide) => slide?.querySelector('video') || null;
+
+    const applyIntroSoundPreference = () => {
+        trackSlides.forEach((slide) => {
+            const video = getSlideVideo(slide);
+            if (video) video.muted = !introSoundOn;
+            slide.querySelectorAll('.intro-sound-toggle').forEach((button) => {
+                button.classList.toggle('is-on', introSoundOn);
+                button.setAttribute('aria-pressed', introSoundOn ? 'true' : 'false');
+                button.setAttribute('aria-label', introSoundOn ? 'Mute intro' : 'Unmute intro');
+                button.title = introSoundOn ? 'Sound on' : 'Sound off';
+            });
+        });
+    };
 
     const clearVideoFallback = () => {
         if (videoFallbackTimer) {
@@ -1434,7 +1448,7 @@ const initSolutionSlideshow = () => {
         if (!video || slide.dataset.slideClone === '1' || prefersReducedMotion) {
             return false;
         }
-        video.muted = true;
+        video.muted = !introSoundOn;
         video.playsInline = true;
         try {
             video.currentTime = 0;
@@ -1573,6 +1587,26 @@ const initSolutionSlideshow = () => {
             slideInterval = null;
         }
     };
+
+    viewport.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('.intro-sound-toggle')) {
+            event.stopPropagation();
+        }
+    }, true);
+
+    viewport.addEventListener('click', (event) => {
+        const button = event.target.closest('.intro-sound-toggle');
+        if (!button) return;
+        event.preventDefault();
+        event.stopPropagation();
+        introSoundOn = !introSoundOn;
+        applyIntroSoundPreference();
+        const slide = trackSlides[trackIndex];
+        const video = getSlideVideo(slide);
+        if (introSoundOn && video && video.paused && !video.ended && slide.dataset.slideClone !== '1') {
+            video.play().catch(() => {});
+        }
+    });
 
     trackSlides.forEach((slide) => {
         const video = getSlideVideo(slide);

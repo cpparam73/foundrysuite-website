@@ -42,7 +42,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Icons/favicon-16x16-light.png?v=nobg1">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Icons/apple-touch-icon-light.png?v=nobg1">
     <script src="assets/js/core/theme-init.js"></script>
-    <link rel="stylesheet" href="styles.css?v=logo-intro1">
+    <link rel="stylesheet" href="styles.css?v=logo-sound1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -140,6 +140,18 @@
                             <video class="solution-slide-video" muted playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" aria-label="FoundrySuite logo intro">
                                 <source src="assets/videos/fs-logo-intro.mp4" type="video/mp4">
                             </video>
+                            <button type="button" class="intro-sound-toggle" aria-pressed="false" aria-label="Unmute intro" title="Sound off">
+                                <svg class="intro-sound-icon intro-sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                                </svg>
+                                <svg class="intro-sound-icon intro-sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                </svg>
+                            </button>
                         </div>
 
                         <!-- Slide 2: FoundrySuite Orbit -->
@@ -1372,7 +1384,7 @@
 
     <script src="assets/js/core/security-manager.js"></script>
     <script src="assets/js/core/content-protection.js"></script>
-    <script src="script.js?v=logo-intro1"></script>
+    <script src="script.js?v=logo-sound1"></script>
 </body>
 </html>
 
