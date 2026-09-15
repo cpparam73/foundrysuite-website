@@ -42,7 +42,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Icons/favicon-16x16-light.png?v=nobg1">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Icons/apple-touch-icon-light.png?v=nobg1">
     <script src="assets/js/core/theme-init.js"></script>
-    <link rel="stylesheet" href="styles.css?v=orange-ring1">
+    <link rel="stylesheet" href="styles.css?v=logo-intro1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -135,8 +135,15 @@
             <div class="solution-slideshow">
                 <div class="slideshow-viewport">
                     <div class="slideshow-track">
-                        <!-- Slide 1: FoundrySuite Orbit -->
-                        <div class="solution-slide active" data-solution="orbit">
+                        <!-- Slide 1: Logo intro -->
+                        <div class="solution-slide active" data-solution="logo-intro">
+                            <video class="solution-slide-video" muted playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" aria-label="FoundrySuite logo intro">
+                                <source src="assets/videos/fs-logo-intro.mp4" type="video/mp4">
+                            </video>
+                        </div>
+
+                        <!-- Slide 2: FoundrySuite Orbit -->
+                        <div class="solution-slide" data-solution="orbit">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Architecture/hd/foundrysuite-orbit-light.webp?v=orbit3">
                                 <img src="assets/images/Architecture/foundrysuite-orbit-light.png?v=orbit3" width="2048" height="1363" alt="FoundrySuite — modular platform capabilities and business outcomes" class="solution-slide-img solution-orbit-img solution-orbit-img--light" fetchpriority="high" decoding="async">
@@ -147,12 +154,12 @@
                             </picture>
                         </div>
 
-                        <!-- Slide 2: Default Dashboard -->
+                        <!-- Slide 3: Default Dashboard -->
                         <div class="solution-slide" data-solution="dashboard">
                             <img src="assets/images/Branding/bid-hd.svg" width="1920" height="1080" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" loading="lazy" decoding="async">
                         </div>
 
-                        <!-- Slide 3: Foundry Manufacturing -->
+                        <!-- Slide 4: Foundry Manufacturing -->
                         <div class="solution-slide" data-solution="manufacturing">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-manufacturing.webp">
@@ -166,7 +173,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 4: Foundry Build - Construction -->
+                        <!-- Slide 5: Foundry Build - Construction -->
                         <div class="solution-slide" data-solution="build">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-build.webp">
@@ -180,7 +187,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 5: Foundry Campus - Education -->
+                        <!-- Slide 6: Foundry Campus - Education -->
                         <div class="solution-slide" data-solution="campus">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-campus.webp">
@@ -194,7 +201,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 6: Foundry Health - Healthcare -->
+                        <!-- Slide 7: Foundry Health - Healthcare -->
                         <div class="solution-slide" data-solution="health">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-health.webp">
@@ -208,7 +215,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 7: Foundry IT - IT Services -->
+                        <!-- Slide 8: Foundry IT - IT Services -->
                         <div class="solution-slide" data-solution="it">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-it.webp">
@@ -222,7 +229,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 8: Foundry Agri - Agriculture -->
+                        <!-- Slide 9: Foundry Agri - Agriculture -->
                         <div class="solution-slide" data-solution="agri">
                             <picture class="solution-slide-picture">
                                 <source type="image/webp" srcset="assets/images/Products/hd/foundry-agri.webp">
@@ -244,14 +251,15 @@
                         </svg>
                     </button>
                     <div class="slide-indicators">
-                        <button class="slide-indicator active" data-slide="0" data-label="FoundrySuite" aria-label="FoundrySuite" title="FoundrySuite"></button>
-                        <button class="slide-indicator" data-slide="1" data-label="Dashboard" aria-label="Dashboard" title="Dashboard"></button>
-                        <button class="slide-indicator" data-slide="2" data-label="Manufacturing" aria-label="Manufacturing" title="Manufacturing"></button>
-                        <button class="slide-indicator" data-slide="3" data-label="Build" aria-label="Build" title="Build"></button>
-                        <button class="slide-indicator" data-slide="4" data-label="Campus" aria-label="Campus" title="Campus"></button>
-                        <button class="slide-indicator" data-slide="5" data-label="Health" aria-label="Health" title="Health"></button>
-                        <button class="slide-indicator" data-slide="6" data-label="IT" aria-label="IT" title="IT"></button>
-                        <button class="slide-indicator" data-slide="7" data-label="Agri" aria-label="Agri" title="Agri"></button>
+                        <button class="slide-indicator active" data-slide="0" data-label="Intro" aria-label="Logo intro" title="Intro"></button>
+                        <button class="slide-indicator" data-slide="1" data-label="FoundrySuite" aria-label="FoundrySuite" title="FoundrySuite"></button>
+                        <button class="slide-indicator" data-slide="2" data-label="Dashboard" aria-label="Dashboard" title="Dashboard"></button>
+                        <button class="slide-indicator" data-slide="3" data-label="Manufacturing" aria-label="Manufacturing" title="Manufacturing"></button>
+                        <button class="slide-indicator" data-slide="4" data-label="Build" aria-label="Build" title="Build"></button>
+                        <button class="slide-indicator" data-slide="5" data-label="Campus" aria-label="Campus" title="Campus"></button>
+                        <button class="slide-indicator" data-slide="6" data-label="Health" aria-label="Health" title="Health"></button>
+                        <button class="slide-indicator" data-slide="7" data-label="IT" aria-label="IT" title="IT"></button>
+                        <button class="slide-indicator" data-slide="8" data-label="Agri" aria-label="Agri" title="Agri"></button>
                     </div>
                     <button class="slide-nav-btn next-btn" aria-label="Next slide">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1364,7 +1372,7 @@
 
     <script src="assets/js/core/security-manager.js"></script>
     <script src="assets/js/core/content-protection.js"></script>
-    <script src="script.js?v=slide-size1"></script>
+    <script src="script.js?v=logo-intro1"></script>
 </body>
 </html>
 

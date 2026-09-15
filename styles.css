@@ -992,11 +992,36 @@ body.nav-open {
     object-fit: cover;
     object-position: center;
     display: block;
-    /* Clip image to card radius now that the slide shell is overflow:visible */
+    /* Clip media to card radius now that the slide shell is overflow:visible */
     overflow: hidden;
     image-rendering: auto;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.solution-slide-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: inherit;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    background: #0b1220;
+    pointer-events: none;
+}
+
+.solution-slide[data-solution="logo-intro"] {
+    background: #0b1220;
+}
+
+[data-theme="dark"] .solution-slide[data-solution="logo-intro"] {
+    background: #050816;
 }
 
 /* Orbit art is taller than 16:9 — stretch to fill so nothing is cropped */
@@ -4116,7 +4141,8 @@ body.nav-open {
         padding: 0.25rem 0.5rem;
     }
 
-    .solution-slide-img {
+    .solution-slide-img,
+    .solution-slide-video {
         object-fit: contain;
     }
 

@@ -1374,6 +1374,11 @@ const initSolutionSlideshow = () => {
         clone.dataset.slideClone = '1';
         clone.setAttribute('aria-hidden', 'true');
         clone.querySelectorAll('[id]').forEach((node) => node.removeAttribute('id'));
+        clone.querySelectorAll('video').forEach((video) => {
+            video.preload = 'none';
+            video.removeAttribute('autoplay');
+            video.pause();
+        });
         return clone;
     };
 
@@ -1393,8 +1398,76 @@ const initSolutionSlideshow = () => {
     let slideInterval = null;
     let isAnimating = false;
     let normalizeTimer = null;
+    let videoFallbackTimer = null;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let onIntroComplete = () => {};
 
     const logicalFromTrack = (index) => ((index % slideCount) + slideCount) % slideCount;
+
+    const getSlideVideo = (slide) => slide?.querySelector('video') || null;
+
+    const clearVideoFallback = () => {
+        if (videoFallbackTimer) {
+            window.clearTimeout(videoFallbackTimer);
+            videoFallbackTimer = null;
+        }
+    };
+
+    const pauseInactiveVideos = () => {
+        trackSlides.forEach((slide, index) => {
+            const video = getSlideVideo(slide);
+            if (!video) return;
+            if (index === trackIndex && slide.dataset.slideClone !== '1') return;
+            video.pause();
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                /* ignore seek before metadata */
+            }
+        });
+    };
+
+    const playActiveIntroVideo = () => {
+        clearVideoFallback();
+        const slide = trackSlides[trackIndex];
+        const video = getSlideVideo(slide);
+        if (!video || slide.dataset.slideClone === '1' || prefersReducedMotion) {
+            return false;
+        }
+        video.muted = true;
+        video.playsInline = true;
+        try {
+            video.currentTime = 0;
+        } catch (error) {
+            /* ignore */
+        }
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+            playAttempt.catch(() => {
+                startImageInterval();
+            });
+        }
+        const scheduleFallback = () => {
+            clearVideoFallback();
+            const durationMs = Number.isFinite(video.duration) && video.duration > 0
+                ? video.duration * 1000 + 800
+                : 30000;
+            videoFallbackTimer = window.setTimeout(() => {
+                if (trackSlides[trackIndex] !== slide || video.ended) return;
+                onIntroComplete();
+            }, durationMs);
+        };
+        if (Number.isFinite(video.duration) && video.duration > 0) {
+            scheduleFallback();
+        } else {
+            video.addEventListener('loadedmetadata', scheduleFallback, { once: true });
+            videoFallbackTimer = window.setTimeout(() => {
+                if (trackSlides[trackIndex] !== slide || video.ended) return;
+                onIntroComplete();
+            }, 30000);
+        }
+        return true;
+    };
 
     const centeredOffset = (index) => {
         const slide = trackSlides[index];
@@ -1437,6 +1510,8 @@ const initSolutionSlideshow = () => {
         setActiveClasses(logical, index);
         // Active/peek width swap is layout-based — measure after classes apply
         void track.offsetWidth;
+        pauseInactiveVideos();
+        playActiveIntroVideo();
 
         if (!animate) {
             track.style.transition = 'none';
@@ -1468,11 +1543,28 @@ const initSolutionSlideshow = () => {
     const nextSlide = () => goToTrackIndex(trackIndex + 1, { animate: true });
     const prevSlide = () => goToTrackIndex(trackIndex - 1, { animate: true });
 
-    const startSlideshow = () => {
+    const startImageInterval = () => {
         if (slideInterval) clearInterval(slideInterval);
         slideInterval = setInterval(() => {
             if (!isAnimating) nextSlide();
         }, SLIDESHOW_INTERVAL);
+    };
+
+    const startSlideshow = () => {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = null;
+        const slide = trackSlides[trackIndex];
+        const video = getSlideVideo(slide);
+        if (video && slide.dataset.slideClone !== '1' && !prefersReducedMotion) {
+            if (video.paused && !video.ended) {
+                const playAttempt = video.play();
+                if (playAttempt && typeof playAttempt.catch === 'function') {
+                    playAttempt.catch(() => startImageInterval());
+                }
+            }
+            return;
+        }
+        startImageInterval();
     };
 
     const stopSlideshow = () => {
@@ -1480,6 +1572,21 @@ const initSolutionSlideshow = () => {
             clearInterval(slideInterval);
             slideInterval = null;
         }
+    };
+
+    trackSlides.forEach((slide) => {
+        const video = getSlideVideo(slide);
+        if (!video) return;
+        video.addEventListener('ended', () => {
+            if (slide !== trackSlides[trackIndex]) return;
+            clearVideoFallback();
+            onIntroComplete();
+        });
+    });
+
+    onIntroComplete = () => {
+        nextSlide();
+        startSlideshow();
     };
 
     if (DOM.nextBtn) {
